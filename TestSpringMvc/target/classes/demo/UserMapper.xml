@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.UserMapper" >
+  <!-- <resultMap id="BaseResultMap" type="com.java.dao.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+  </resultMap> -->
+  <sql id="Base_Column_List" >
+    id, yhmc,yhxb,sfzhm,jslb,user_name, password, user_type
+  </sql>
+  <select id="selectByPrimaryKey" resultType="com.java.entity.User" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getUsers" resultType="com.java.entity.User"  >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    WHERE 1 = 1
+    <if test="userName != null and userName != ''">
+     AND user_name LIKE concat('%',#{userName},'%')
+     </if>
+    <if test="sfzhm != null and sfzhm != ''">
+      AND sfzhm LIKE concat('%',#{sfzhm},'%')
+    </if>
+    <if test="jslb != null and jslb != ''">
+      AND jslb LIKE concat('%',#{jslb},'%')
+    </if>
+
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.java.entity.User" >
+    insert into t_user (yhmc,yhxb,sfzhm,user_name, password, user_type)
+    values (#{yhmc},#{yhxb},#{sfzhm},#{userName}, #{password},#{userType})
+  </insert>
+  <insert id="insertSelective" parameterType="com.java.entity.User" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yhmc != null" >
+        yhmc,
+      </if>
+      <if test="yhxb != null" >
+        yhxb,
+      </if>
+      <if test="sfzhm != null" >
+        sfzhm,
+      </if>
+      <if test="userName != null" >
+        user_name,	
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="userType != null" >
+        userType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yhmc != null" >
+        #{yhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="yhxb != null" >
+        #{yhxb,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null" >
+        #{sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.User" >
+    update t_user
+    <set >
+      <if test="yhmc != null" >
+        yhmc = #{yhmc,jdbcType=VARCHAR},
+      </if>
+      <if test="yhxb != null" >
+        yhxb = #{yhxb,jdbcType=VARCHAR},
+      </if>
+      <if test="jslb != null" >
+        jslb = #{jslb,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null" >
+        sfzhm = #{sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.java.entity.User" >
+    update t_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

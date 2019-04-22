@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/common.css"/>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/demo.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/user.css">
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/common/common.js"></script>
+	
+</head>
+<body>
+	<table id="tab" style="height: auto"></table>
+	<div id="tb">
+		<div class="btns" id="btn1">
+		<a href="#" id="sear" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="doedit()">修改</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="doadd()">新增</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="doClear()">重置</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="doDelete()">删除</a>
+		</div>
+		<div id="term" class="terms" >
+
+			<div>证件号码<input class="easyui-textbox" id="sfzhm" style="width: 150px;height: 25px;"></div>
+			<div>用户名称<input class="easyui-textbox" id="userName" style="width: 150px;height: 25px;"></div>
+			<div>教师类别<select id="jslb" name = "jslb"  class="easyui-combobox"  style="width: 155px">
+				<option  >--请选择--</option>
+				<option  >教师岗</option>
+				<option >管理岗</option>
+			</select>
+			</div>
+		</div>
+	</div>
+	<div id="wid" class="easyui-window" data-options="title:'修改用户信息',collapsible:false,
+		minimizable:false,modal:true,closed:true,scrollbarSize:0" style="height:55%;width: 40%;">
+		<form class="form" id="form1" >
+			<div><span>code：</span><input id="fid" name="id" class="easyui-textbox" disabled>
+				<span>姓名  ：</span><input id="fyhmc" name="yhmc" class="easyui-textbox">
+			</div>
+			<div><span>性别：</span><select id="fyhxb" name = "yhxb"  class="easyui-combobox" style="width: 155px">
+				<option  >男</option>
+				<option >女</option>
+			</select>
+				<span>账号  ：</span><input id="fuserName" name="userName" class="easyui-textbox" disabled>
+			</div>
+			<div><span>密码：</span><input id="fpassword" name = "password" class="easyui-textbox">
+				<span>类型  ：</span><input id="fuserType" name = "userType" class="easyui-textbox" disabled>
+			</div>
+			<div><span>岗位：</span><select id="fjslb" name = "jslb"  class="easyui-combobox" style="width: 155px">
+										<option  >教师岗</option>
+										<option >管理岗</option>
+									</select>
+				<span>证件号：</span><input id="fsfzhm" name = "sfzhm" class="easyui-textbox">
+
+			</div>
+
+			<div class="btnss">
+				<a href="#" class="easyui-linkbutton"  onclick="dosave()">保存</a>
+				<a href="#" class="easyui-linkbutton"  onclick="doback()">返回</a>
+			</div>
+
+		</form>
+	</div>
+	<div id="wid1" class="easyui-dialog"
+		 style="width:600px;" height="300px" closed="true" modal="true" title="新增用户" modal="true">
+		<form class="form" id="form2" >
+			<div><span>code：</span><input id="f2id" name="id" class="easyui-textbox" disabled>
+				<span>姓名  ：</span><input id="f2yhmc" name="yhmc" class="easyui-textbox">
+			</div>
+			<div><span>性别：</span><select id="f2yhxb" name = "yhxb"  class="easyui-combobox" style="width: 155px">
+				<option  >男</option>
+				<option >女</option>
+			</select>
+				<span>账号  ：</span><input id="f2userName" name="userName" class="easyui-textbox" >
+			</div>
+			<div><span>密码：</span><input id="f2password" name = "password" class="easyui-textbox">
+				<span>类型  ：</span><input id="f2userType" name = "userType" class="easyui-textbox" formatter="formatUserType">
+			</div>
+			<div><span>岗位：</span><select id="f2jslb" name = "jslb"  class="easyui-combobox" style="width: 155px">
+				<option  >教师岗</option>
+				<option >管理岗</option>
+			</select>
+				<span>证件号：</span><input id="f2sfzhm" name = "sfzhm" class="easyui-textbox">
+
+			</div>
+
+			<div class="btnss">
+				<a href="#" class="easyui-linkbutton"   onclick="dosave1()">保存</a>
+				<a href="#" class="easyui-linkbutton"   onclick="doback()">返回</a>
+			</div>
+
+		</form>
+	</div>
+	
+	
+</body>
+<script type="text/javascript" src="/TestSpringMvc/scripts/sysUser.js"></script>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.MenuDao" >
+  
+  <sql id="Base_Column_List" >
+    id, name, parent_id, url,DISPLOY_ORDER,MEMO,HAS_LEAF,CREATER,CREATE_TIME,UPDATER,UPDATE_TIME
+  </sql>
+  <select id="getMenus" resultType="com.java.entity.Menu">
+  	SELECT *
+	FROM menu t1 LEFT JOIN menurole t2 ON t1.ID = t2.MENU_ID
+	WHERE t2.ROLE_ID = #{roleId}
+	ORDER BY t1.DISPLOY_ORDER
+  </select>
+</mapper>

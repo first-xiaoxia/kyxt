@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/common.css"/>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/demo.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/user.css">
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/common/common.js"></script>
+	
+</head>
+<body>
+	<table id="tab" style="height: auto"></table>
+	<div id="tb">
+		<div class="btns" id="btn1">
+		<a href="#" id="sear" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="doedit()">修改</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="doadd()">新增</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="doClear()">重置</a>
+		</div>
+		<div id="term" class="terms" >
+			<div>时间:<input class="easyui-datebox" id="starDate" editable="false" data-options="formatter:myformatter,parser:myparser" style="width:160px;">
+				- <input class="easyui-datebox" id="endDate" editable="false" data-options="formatter:myformatter,parser:myparser" style="width:160px;"></div>
+			 <div>姓名<input class="easyui-textbox" id="name" style="width: 150px;height: 25px;"></div>
+			<div>学号<input class="easyui-textbox" id="studentId" style="width: 150px;height: 25px;"></div>
+			<div>班级<input class="easyui-textbox" id="sclass" style="width: 150px;height: 25px;"></div>
+		</div>
+	</div>
+	<div id="wid" class="easyui-window" data-options="title:'修改用户信息',collapsible:false,
+		minimizable:false,modal:true,closed:true,scrollbarSize:0" style="height:400px;width: 40%;">
+		<form class="form" id="form1" >
+			<div><span>code：</span><input id="fid" name="id" class="easyui-textbox" disabled>
+				<span>姓名：</span><input id="fname" name="name" class="easyui-textbox" disabled>
+			</div>
+			<div><span>学号：</span><input id="fstudentId" name = "studentId" class="easyui-textbox">
+				<span>班级：</span><input id="fsclass" name = "sclass" class="easyui-textbox" >
+			</div>
+			<div><span>年龄：</span><input id="fage" name = "age" data-options="required:true,validType:'fage'" class="easyui-textbox">
+				<span>身高：</span><input id="fheight" name = "height"  class="easyui-textbox">
+			</div>
+			<div><span>体重：</span><input id="fweight" name = "weight" class="easyui-textbox">
+			</div>
+			<div class="btnss">
+				<a href="#" class="easyui-linkbutton"  onclick="dosave()">保存</a>
+				<a href="#" class="easyui-linkbutton"  onclick="doback()">返回</a>
+			</div>
+
+		</form>
+	</div>
+	<div id="wid1" class="easyui-dialog"
+		 style="width:600px;" height="400px" closed="true" title="新增用户" modal="true">
+		<form class="form" id="form2" >
+			<div>
+				<span>姓名：</span><input id="f2name" name="name" class="easyui-textbox" data-options="required:true" >
+			</div>
+			<div><span>学号：</span><input id="f2studentId" name = "studentId" class="easyui-textbox" data-options="required:true">
+				<span>班级：</span><input id="f2sclass" name = "sclass" class="easyui-textbox" data-options="required:true">
+			</div>
+			<div><span>年龄：</span><input id="f2age" name = "age" data-options="required:true,validType:'fage'" class="easyui-textbox">
+				<span>身高：</span><input id="f2height" name = "height"  class="easyui-textbox" data-options="required:true">
+			</div>
+			<div><span>体重：</span><input id="f2weight" name = "weight" class="easyui-textbox" data-options="required:true">
+			</div>
+			<div class="btnss">
+				<a href="#" class="easyui-linkbutton"   onclick="dosave1()">保存</a>
+				<a href="#" class="easyui-linkbutton"   onclick="doback()">返回</a>
+			</div>
+		</form>
+	</div>
+	
+	
+</body>
+<script type="text/javascript" src="/TestSpringMvc/scripts/student.js"></script>
+</html>

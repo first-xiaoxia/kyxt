@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/common.css"/>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/demo.css">
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/common/common.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/index.js"></script>
+	<!--<style>
+		.tree-icon{
+			background:url('../images/documentsCharcoal.png') no-repeat center center !important;
+		}
+		/*折叠时图片*/
+		.tree-folder{
+			background:url('../images/documentsCharcoal.png') no-repeat center center !important;
+		} 		/*展开时图片*/
+		.tree-folder-open{
+			background:url('../images/documentsCharcoal.png') no-repeat center center !important;
+		}
+	</style>-->
+	<style type="text/css">
+		.tree-node-selected {
+			background: #c5fff0;
+			color: #000000;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="easyui-layout" style="width:100%; height:100%; min-width:1000px;">
+		<div class="header" data-options="region:'north'" style=" height:40px; border:none;">
+			<span class="title" style="width: 200px;">demo</span>
+			<span class="logininfo"><span>欢迎您：<span id="clientName"></span></span><a onclick="logout()">退出</a></span>
+		</div>
+		<div data-options="region:'west',split:true,title:'菜单'" style="width:200px;border:none;">
+			<ul id="menu" class="easyui-tree" style="margin-top:5px;"></ul>
+		</div>
+		<div id="content" data-options="region:'center',split:true" style="border:none;">
+			<div id="tt" class="easyui-tabs" data-options="fit:true">
+				<div title="首页" style="padding:20px;">
+					<div style="width:100%; height:100%; overflow: hidden;
+						background-repeat:no-repeat; background-position:center; background-size:100%;">			
+						<div class="font" id="site"style="font-size:25px; margin-left:14%; margin-top: -4%; margin-bottom: 20px; height: 300px; OVERFLOW-Y: auto; OVERFLOW-X: hidden;">				
+							<textarea id="message" style="line-height: 1.5;font-size:25px; margin: 0px;width: 100%;height: 90%;border: 0;resize:none;"onfocus=this.blur() ></textarea>
+						</div>											
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="footer" data-options="region:'south',split:true" style="background-color:#2B323A; height:35px; border:none;">
+		</div>
+	</div>
+</body>
+
+</html>

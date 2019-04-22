@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.StudentDao" >
+  <sql id="Base_Column_List" >
+    id, NAME, sCLASS, STUDENT_ID,age,height,weight,CREATER,CREATE_TIME,UPDATER,UPDATE_TIME
+  </sql>
+  <!-- 获取所有的学生的行数据 -->
+  <select id="students" resultType="com.java.entity.student.Student" parameterType="com.java.entity.student.StudentQeury" >
+    select 
+    <include refid="Base_Column_List" />
+    from students
+    where 1 = 1
+    <if test="starDate != null and starDate != ''"> and CREATE >= #{starDate}</if>
+    <if test="endDate != null and endDate != ''"> and CREATE >= #{endDate}</if>
+    <if test="name != null and name != ''"> and NAME LIKE concat('%',#{name},'%')</if>
+    <if test="studentId != null and studentId != ''"> and NAME LIKE concat('%',#{studentId},'%')</if>
+    <if test="sclass != null and sclass != ''"> and NAME = #{name}</if>
+    LIMIT #{page},#{rows}
+  </select>
+  <!-- 获取学生行数据的总条数 -->
+  <select id="getStudentsTotal" resultType="java.lang.Integer" parameterType="com.java.entity.student.StudentQeury" >
+    select COUNT(1)
+    from students
+    where 1 = 1
+    <if test="starDate != null and starDate != ''"> and CREATE >= #{starDate}</if>
+    <if test="endDate != null and endDate != ''"> and CREATE >= #{endDate}</if>
+    <if test="name != null and name != ''"> and NAME LIKE concat('%',#{name},'%')</if>
+    <if test="studentId != null and studentId != ''"> and NAME LIKE concat('%',#{studentId},'%')</if>
+    <if test="sclass != null and sclass != ''"> and NAME = #{name}</if>
+  </select>
+
+  <!-- 修改学生信息-->
+  <update id="editStudent" parameterType="com.java.entity.student.StudentQeury" >
+     UPDATE students
+      SET `NAME` = #{name},STUDENT_ID = #{studentId},sCLASS = #{sclass},age = #{age},
+      height = #{height},weight = #{weight},UPDATER = #{updater},UPDATE_TIME = #{updateTime}
+    WHERE ID = #{id}
+  </update>
+
+  <!-- 新增学生对象-->
+  <insert id="addStudent" parameterType="com.java.entity.student.Student">
+    INSERT INTO students(NAME ,sCLASS,STUDENT_ID,age,height,weight,CREATER,CREATE_TIME)
+    VALUES (
+      #{name},#{sclass},#{studentId},#{age},#{height},#{weight},#{creater},#{createTime}
+    )
+  </insert>
+
+</mapper>
