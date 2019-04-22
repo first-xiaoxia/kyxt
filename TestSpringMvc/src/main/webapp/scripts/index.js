@@ -1,4 +1,5 @@
 $(function(){
+
 	$(".easyui-tree").tree({
 		url:path+"/menu/getMenu.json",
 		onClick: function(node){
@@ -9,6 +10,15 @@ $(function(){
 				$(this).tree(node.state === 'closed' ? 'expand' : 'collapse', node.target);
 			}
 			
+		}
+	});
+	$.ajax({
+		url:path+'/user/getYhmc',
+		method:'post',
+		data:{},
+		success:function (data) {
+			console.log(data)
+			$('#myusername').textbox('setValue',data);
 		}
 	});
 });
@@ -37,4 +47,15 @@ function addTabs(title, url){
 			closable:true
 		});
 	}
+}
+
+loginOut = function () {
+	$.ajax({
+		url:path+'/user/loginOut',
+		method:'post',
+		data:{},
+		success:function (data) {
+			window.location.href=path+"/views/login.html";
+		}
+	});
 }
