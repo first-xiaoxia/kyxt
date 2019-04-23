@@ -33,6 +33,7 @@ public class OrganiseUnitController {
     @ResponseBody
     public BaseMessage addOrganiseUnit(OrganiseUnit organiseUnit){
         BaseMessage message = new BaseMessage();
+
         message = this.organiseUnitService.addOrganiseUnit(organiseUnit);
         return message;
     }
