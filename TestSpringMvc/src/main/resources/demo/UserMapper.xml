@@ -39,8 +39,8 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.java.entity.User" >
-    insert into t_user (yhmc,yhxb,sfzhm,user_name, password, user_type)
-    values (#{yhmc},#{yhxb},#{sfzhm},#{userName}, #{password},#{userType})
+    insert into t_user (yhmc,yhxb,sfzhm,user_name, password, user_type,jslb)
+    values (#{yhmc},#{yhxb},#{sfzhm},#{userName}, #{password},#{userType},${jslb})
   </insert>
   <insert id="insertSelective" parameterType="com.java.entity.User" >
     insert into t_user
@@ -61,7 +61,10 @@
         password,
       </if>
       <if test="userType != null" >
-        userType,
+        user_type,
+      </if>
+      <if test="jslb != null" >
+        jslb,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -83,6 +86,9 @@
       <if test="userType != null" >
         #{userType,jdbcType=VARCHAR},
       </if>
+      <if test="jslb != null" >
+        #{jslb,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.User" >
@@ -96,6 +102,9 @@
       </if>
       <if test="jslb != null" >
         jslb = #{jslb,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
       </if>
       <if test="sfzhm != null" >
         sfzhm = #{sfzhm,jdbcType=VARCHAR},

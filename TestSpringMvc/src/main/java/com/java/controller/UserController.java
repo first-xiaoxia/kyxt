@@ -162,11 +162,12 @@ public class UserController {
      * @version 0.1
      * @sice 0.1
      */
-    @RequestMapping(value = "/getYhmc", method = RequestMethod.POST)
+    @RequestMapping(value = "/getUser", method = RequestMethod.POST)
     @ResponseBody
-    public String getYhmc(HttpServletRequest request){
+    public User getUser(HttpServletRequest request){
         User model = (User)request.getSession().getAttribute("LoginMoldel");
-        return model.getUserName();
+        User user = this.iuserservice.getIUser(model.getId());
+        return user;
     }
     /**
      *

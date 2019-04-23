@@ -103,7 +103,7 @@ public class IUserService {
 		BaseMessage message = new BaseMessage();
 		int i = 1;
 		try {
-			i = this.iUserdaomapper.insert(user);
+			i = this.iUserdaomapper.insertSelective(user);
 		}catch (Exception e){
 			logger.error("新增用户信息失败"+e);
 			message.setMesscode(String.valueOf(i));

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/common.css"/>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/demo.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/user.css">
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/common/common.js"></script>
+	
+</head>
+<body>
+	<div id="tb" align="center">
+		<form class="form" id="form1" >
+			<div  style="width: 500px">
+				<span>code：</span><input id="f2id" name="id" class="easyui-textbox"  style="width: 240px" disabled="true">
+
+			</div>
+			<div style="width: 500px">
+				<span>账号  ：</span><input id="f2userName" name="userName" class="easyui-textbox" style="width: 240px" disabled>
+
+			</div>
+			<div style="width: 500px"><span>密码：</span><input id="f2password" name = "password" class="easyui-textbox" disabled style="width: 240px">
+
+			</div>
+			<div style="width: 500px">
+				<span>姓名  ：</span><input id="f2yhmc" name="yhmc" class="easyui-textbox" disabled style="width: 240px">
+			</div>
+			<div style="width: 500px">
+				<span>性别：</span>
+				</span><input id="f2yhxb" name="yhxb" class="easyui-combobox" disabled style="width: 240px">
+			</div>
+
+			<div style="width: 500px">
+				<span>岗位：</span>
+				<input id="f2jslb" name = "jslb"  class="easyui-combobox" disabled style="width: 240px"/>
+
+				</input>
+			</div>
+			<div style="width: 500px">
+				<span>证件号：</span><input id="f2sfzhm" name = "sfzhm" class="easyui-textbox" disabled style="width: 240px">
+
+			</div>
+		</form>
+		<div class="btnss">
+			<a href="#" class="easyui-linkbutton"    onclick="baseSave()">保存</a>
+			<a href="#" class="easyui-linkbutton"  onclick="basedoedit()">修改</a>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript" src="/TestSpringMvc/scripts/baseinfo.js"></script>
+</html>

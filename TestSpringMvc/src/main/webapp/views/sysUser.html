@@ -37,28 +37,41 @@
 		</div>
 	</div>
 	<div id="wid" class="easyui-window" data-options="title:'修改用户信息',collapsible:false,
-		minimizable:false,modal:true,closed:true,scrollbarSize:0" style="height:55%;width: 40%;">
-		<form class="form" id="form1" >
-			<div><span>code：</span><input id="fid" name="id" class="easyui-textbox" disabled>
-				<span>姓名  ：</span><input id="fyhmc" name="yhmc" class="easyui-textbox">
-			</div>
-			<div><span>性别：</span><select id="fyhxb" name = "yhxb"  class="easyui-combobox" style="width: 155px">
-				<option  >男</option>
-				<option >女</option>
-			</select>
-				<span>账号  ：</span><input id="fuserName" name="userName" class="easyui-textbox" disabled>
-			</div>
-			<div><span>密码：</span><input id="fpassword" name = "password" class="easyui-textbox">
-				<span>类型  ：</span><input id="fuserType" name = "userType" class="easyui-textbox" disabled>
-			</div>
-			<div><span>岗位：</span><select id="fjslb" name = "jslb"  class="easyui-combobox" style="width: 155px">
-										<option  >教师岗</option>
-										<option >管理岗</option>
-									</select>
-				<span>证件号：</span><input id="fsfzhm" name = "sfzhm" class="easyui-textbox">
+		maximizable:true,modal:true,closed:true,scrollbarSize:0" style="height:100%;width:100%;">
+		<form class="form" id="form1" style="text-align: center">
+			<div style="width: 98%">
+				<span>编号  ：</span><input id="fid" name="id" class="easyui-textbox" disabled style="width: 240px" >
 
 			</div>
+			<div style="width: 98%">
+				<span>账号  ：</span><input id="fuserName" name="userName" class="easyui-textbox" disabled style="width: 240px" >
 
+			</div>
+			<div style="width: 98%"><span>密码：</span><input id="fpassword" name = "password" class="easyui-textbox"  style="width: 240px">
+
+			</div>
+			<div style="width: 98%">
+				<span>姓名  ：</span><input id="fyhmc" name="yhmc" class="easyui-textbox"  style="width: 240px">
+			</div>
+			<div style="width: 98%">
+				<span>性别：</span>
+				</span><input id="fyhxb" name="yhxb" class="easyui-combobox"  style="width: 240px">
+			</div>
+
+			<div style="width: 98%">
+				<span>岗位：</span>
+				<input id="fjslb" name = "jslb"  class="easyui-combobox"  style="width: 240px"/>
+
+				</input>
+			</div>
+			<div style="width: 98%">
+				<span>类型：</span><input id="fuserType" name = "userType" class="easyui-combobox"  style="width: 240px">
+
+			</div>
+			<div style="width: 98%">
+				<span>证件号：</span><input id="fsfzhm" name = "sfzhm" class="easyui-textbox"  style="width: 240px">
+
+			</div>
 			<div class="btnss">
 				<a href="#" class="easyui-linkbutton"  onclick="dosave()">保存</a>
 				<a href="#" class="easyui-linkbutton"  onclick="doback()">返回</a>
@@ -67,25 +80,35 @@
 		</form>
 	</div>
 	<div id="wid1" class="easyui-dialog"
-		 style="width:600px;" height="300px" closed="true" modal="true" title="新增用户" modal="true">
-		<form class="form" id="form2" >
-			<div><span>code：</span><input id="f2id" name="id" class="easyui-textbox" disabled>
-				<span>姓名  ：</span><input id="f2yhmc" name="yhmc" class="easyui-textbox">
+		 style="width:100%; height:100%" closed="true" modal="true" title="新增用户" modal="true">
+		<form class="form" id="form2" style="text-align: center" >
+			<div style="width: 98%">
+				<span>账号  ：</span><input id="f2userName" name="userName" class="easyui-textbox" style="width: 240px" >
+
 			</div>
-			<div><span>性别：</span><select id="f2yhxb" name = "yhxb"  class="easyui-combobox" style="width: 155px">
-				<option  >男</option>
-				<option >女</option>
-			</select>
-				<span>账号  ：</span><input id="f2userName" name="userName" class="easyui-textbox" >
+			<div style="width: 98%"><span>密码：</span><input id="f2password" name = "password" class="easyui-textbox"  style="width: 240px">
+
 			</div>
-			<div><span>密码：</span><input id="f2password" name = "password" class="easyui-textbox">
-				<span>类型  ：</span><input id="f2userType" name = "userType" class="easyui-textbox" formatter="formatUserType">
+			<div style="width: 98%">
+				<span>姓名  ：</span><input id="f2yhmc" name="yhmc" class="easyui-textbox"  style="width: 240px">
 			</div>
-			<div><span>岗位：</span><select id="f2jslb" name = "jslb"  class="easyui-combobox" style="width: 155px">
-				<option  >教师岗</option>
-				<option >管理岗</option>
-			</select>
-				<span>证件号：</span><input id="f2sfzhm" name = "sfzhm" class="easyui-textbox">
+			<div style="width: 98%">
+				<span>性别：</span>
+				</span><input id="f2yhxb" name="yhxb" class="easyui-combobox"  style="width: 240px">
+			</div>
+
+			<div style="width: 98%">
+				<span>岗位：</span>
+				<input id="f2jslb" name = "jslb"  class="easyui-combobox"  style="width: 240px"/>
+
+				</input>
+			</div>
+			<div style="width: 98%">
+				<span>类型：</span><input id="f2userType" name = "userType" class="easyui-combobox"  style="width: 240px">
+
+			</div>
+			<div style="width: 98%">
+				<span>证件号：</span><input id="f2sfzhm" name = "sfzhm" class="easyui-textbox"  style="width: 240px">
 
 			</div>
 
