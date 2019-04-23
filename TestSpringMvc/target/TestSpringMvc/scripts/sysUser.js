@@ -69,7 +69,6 @@ function getParms1() {
 }
 
 function getParms2() {
-    var id = $("#f2id").textbox('getValue');
     var yhmc = $("#f2yhmc").textbox('getValue');
     var yhxb = $("#f2yhxb").textbox('getValue');
     var userName = $("#f2userName").textbox('getValue');
@@ -78,7 +77,6 @@ function getParms2() {
     var sfzhm = $("#f2sfzhm").textbox('getValue');
     var userType = $("#f2userType").textbox('getValue');
     var params = {
-        id:id,
         yhmc:yhmc,
         userName:userName,
         yhxb:yhxb,
@@ -140,6 +138,47 @@ doedit = function () {
     rows = row;
     if(row != null){
         $("#wid").window("open");
+        $("#fyhxb").combobox({
+            data:[{label:'男',type:"男"},{label:'女',type:"女"}],
+            valueField:"label",
+            textField:"type",
+            editable:false,
+            panelHeight:"auto",
+            onLoadSuccess:function(data) {
+                console.log("111")
+                var array=$(this).combobox("getData");
+                $(this).combobox('select',array[0].label);
+            }
+
+        });
+
+        $("#fjslb").combobox({
+            data:[{label:'教师岗',type:"教师岗"},{label:'管理岗',type:"管理岗"}],
+            valueField:"label",
+            textField:"type",
+            editable:false,
+            panelHeight:"auto",
+            onLoadSuccess:function(data) {
+                console.log("222")
+                var array=$(this).combobox("getData");
+                $(this).combobox('select',array[0].label);
+
+            }
+        });
+
+        $("#fuserType").combobox({
+            data:[{label:'1',type:"超级管理员"},{label:'2',type:"普通用户"}],
+            valueField:"label",
+            textField:"type",
+            editable:false,
+            panelHeight:"auto",
+            onLoadSuccess:function(data) {
+                console.log("333")
+                var array=$(this).combobox("getData");
+                $(this).combobox('select',array[0].label);
+
+            }
+        });
         $('#form1').form('load',row);
     }
     else{
@@ -157,14 +196,49 @@ doedit = function () {
  */
 doadd = function () {
 	$("#wid1").window('open');
-	$("#f2userType").combobox({
-		data:[{label:1,type:"1"},{label:2,type:"2"}],
+    $("#form2").form('reset');
+    $("#f2yhxb").combobox({
+        data:[{label:'男',type:"男"},{label:'女',type:"女"}],
         valueField:"label",
         textField:"type",
         editable:false,
         panelHeight:"auto",
-	})
-	$("#form2").form('reset');
+        onLoadSuccess:function(data) {
+            console.log("111")
+            var array=$(this).combobox("getData");
+            $(this).combobox('select',array[0].label);
+        }
+
+    });
+
+    $("#f2jslb").combobox({
+        data:[{label:'教师岗',type:"教师岗"},{label:'管理岗',type:"管理岗"}],
+        valueField:"label",
+        textField:"type",
+        editable:false,
+        panelHeight:"auto",
+        onLoadSuccess:function(data) {
+            console.log("222")
+            var array=$(this).combobox("getData");
+            $(this).combobox('select',array[0].label);
+
+        }
+    });
+
+    $("#f2userType").combobox({
+        data:[{label:'1',type:"超级管理员"},{label:'2',type:"普通用户"}],
+        valueField:"label",
+        textField:"type",
+        editable:false,
+        panelHeight:"auto",
+        onLoadSuccess:function(data) {
+            console.log("333")
+            var array=$(this).combobox("getData");
+            $(this).combobox('select',array[0].label);
+
+        }
+    });
+
 }
 
 /**

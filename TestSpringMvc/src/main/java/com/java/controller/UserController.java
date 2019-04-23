@@ -152,4 +152,36 @@ public class UserController {
         message = this.iuserservice.delUser(id);
         return message;
     }
+
+    /**
+     *
+     *
+     * @return BaseMessage
+     * @author 倪军
+     * @time 2017/3/16 11:34
+     * @version 0.1
+     * @sice 0.1
+     */
+    @RequestMapping(value = "/getUser", method = RequestMethod.POST)
+    @ResponseBody
+    public User getUser(HttpServletRequest request){
+        User model = (User)request.getSession().getAttribute("LoginMoldel");
+        User user = this.iuserservice.getIUser(model.getId());
+        return user;
+    }
+    /**
+     *
+     *
+     * @return BaseMessage
+     * @author 倪军
+     * @time 2017/3/16 11:34
+     * @version 0.1
+     * @sice 0.1
+     */
+    @RequestMapping(value = "/loginOut", method = RequestMethod.POST)
+    @ResponseBody
+    public String loginOut(HttpServletRequest request){
+        request.getSession().removeAttribute("LoginMoldel");
+        return "";
+    }
 } 
