@@ -1,7 +1,6 @@
 package com.java.service;
 
 import com.java.dao.StudentDao;
-import com.java.entity.User;
 import com.java.entity.commons.BaseMessage;
 import com.java.entity.commons.BaseQuery;
 import com.java.entity.student.Student;
@@ -10,7 +9,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /**

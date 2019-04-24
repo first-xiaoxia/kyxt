@@ -10,39 +10,66 @@
   <sql id="Base_Column_List" >
     id, yhmc,yhxb,sfzhm,jslb,user_name, password, user_type
   </sql>
-  <select id="selectByPrimaryKey" resultType="com.java.entity.User" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultType="com.java.entity.user.User" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from t_user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  
-  <select id="getUsers" resultType="com.java.entity.User"  >
-    select 
+
+  <select id="getAll" resultType="com.java.entity.user.User">
+    select
     <include refid="Base_Column_List" />
+    from t_user
+  </select>
+  
+  <select id="getUsers" resultType="com.java.entity.user.User" parameterType="com.java.entity.user.UserQeury" >
+  select
+  <include refid="Base_Column_List" />
+  from t_user
+  WHERE 1 = 1
+  <if test="userName != null and userName != ''">
+    AND user_name LIKE concat('%',#{userName},'%')
+  </if>
+  <if test="yhmc != null and yhmc != ''">
+    AND yhmc LIKE concat('%',#{yhmc},'%')
+  </if>
+  <if test="sfzhm != null and sfzhm != ''">
+    AND sfzhm LIKE concat('%',#{sfzhm},'%')
+  </if>
+  <if test="jslb != null and jslb != ''">
+    AND jslb LIKE concat('%',#{jslb},'%')
+  </if>
+  LIMIT #{page},#{rows}
+</select>
+
+  <select id="getCount" resultType="java.lang.Integer" parameterType="com.java.entity.user.UserQeury" >
+    select count(1)
     from t_user
     WHERE 1 = 1
     <if test="userName != null and userName != ''">
-     AND user_name LIKE concat('%',#{userName},'%')
-     </if>
+      AND user_name LIKE concat('%',#{userName},'%')
+    </if>
+    <if test="yhmc != null and yhmc != ''">
+      AND yhmc LIKE concat('%',#{yhmc},'%')
+    </if>
     <if test="sfzhm != null and sfzhm != ''">
       AND sfzhm LIKE concat('%',#{sfzhm},'%')
     </if>
     <if test="jslb != null and jslb != ''">
       AND jslb LIKE concat('%',#{jslb},'%')
     </if>
-
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.java.entity.User" >
+  <insert id="insert" parameterType="com.java.entity.user.User" >
     insert into t_user (yhmc,yhxb,sfzhm,user_name, password, user_type,jslb)
     values (#{yhmc},#{yhxb},#{sfzhm},#{userName}, #{password},#{userType},${jslb})
   </insert>
-  <insert id="insertSelective" parameterType="com.java.entity.User" >
+  <insert id="insertSelective" parameterType="com.java.entity.user.User" >
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="yhmc != null" >
@@ -91,7 +118,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.user.User" >
     update t_user
     <set >
       <if test="yhmc != null" >
@@ -116,7 +143,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.java.entity.User" >
+  <update id="updateByPrimaryKey" parameterType="com.java.entity.user.User" >
     update t_user
     set user_name = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR}

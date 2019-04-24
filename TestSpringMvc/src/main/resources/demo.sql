@@ -144,3 +144,14 @@ INSERT INTO `t_user`  VALUES ('1', '管理员', '男', '430411192010186811', '�
 
 INSERT INTO `t_user`  VALUES ('2', '用户', '男', '430411192010186811', '教师岗', 'xiaoxia', '000000', '2');
 
+create table t_kyxm(
+	xmlsh VARCHAR(40) not null COMMENT '项目流水号',
+  xmmc varchar(100) COMMENT '项目名称',
+  xmxz varchar(100) COMMENT '项目性质1国家级2省级3省级一下4其他',
+  fzr VARCHAR(40) COMMENT '负责人',
+  xkfl VARCHAR(40) COMMENT '学科分类',
+  kssj datetime COMMENT '开始时间',
+  jhwcsj datetime COMMENT '计划完成时间',
+  xmcyry VARCHAR(40) COMMENT '项目参与人员',
+  PRIMARY KEY (`xmlsh`)
+);

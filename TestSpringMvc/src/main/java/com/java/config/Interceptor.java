@@ -1,9 +1,6 @@
 package com.java.config;
 
-import com.java.entity.LoginModel;
-import com.java.entity.User;
-import com.sun.media.sound.SoftSynthesizer;
-import org.apache.ibatis.reflection.SystemMetaObject;
+import com.java.entity.user.User;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 

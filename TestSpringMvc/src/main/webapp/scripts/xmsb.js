@@ -9,21 +9,21 @@ $(function(){
 		fit:true,//是否自适应父容器
 		fitColumns:true,//自动使列适应表格宽度以防止出现水平滚动
 		scrollbarSize:0,//滚动条的宽度
-		pageList:[3, 10, 50],//初始化页面大小选择列表
-		pageSize:3,
+		pageList:[50, 100, 300],//初始化页面大小选择列表
+		pageSize:50,
 		showFooter:true,//是否显示行脚
 		loadMsg :"加载数据中...",//加载数据时显示的提示消息
 		toolbar : '#tb',
 	    columns:[[
 			{field:'ck',checkbox:true},//复选框
-			{field:'id',title:"编号",width:500},
-            {field:'yhmc',title:"用户名称",width:500},
-            {field:'yhxb',title:"性别",width:500},
-            {field:'jslb',title:"教师类别",width:500},
-			{field:'userName',title:"账号",width:500},
-			{field:'password',title:"密码",width:500},
-            {field:'sfzhm',title:"证件号码",width:500},
-            {field:'userType',title:"用户类型",width:500,formatter:formatUserType}
+			{field:'xmlsh',title:"项目流水号",width:500},
+            {field:'xmmc',title:"项目名称",width:500},
+            {field:'xmxz',title:"项目性质",width:500},
+            {field:'fzr',title:"负责人",width:500},
+			{field:'xkfl',title:"学科分类",width:500},
+			{field:'kssj',title:"开始时间",width:500,formatter:formatDateTime},
+            {field:'jhwcsj',title:"计划完成时间",width:500,formatter:formatDateTime},
+            {field:'xmcyry',title:"项目参与人员",width:500}
 	    ]],
 	    onLoadSuccess:function(data){
 	    	console.log(data);
@@ -35,11 +35,11 @@ $(function(){
  * 获得参数
  */
 function getParms() {
-	var yhmc = $("#userName").textbox("getValue").trim();
+	var userName = $("#userName").textbox("getValue").trim();
     var sfzhm = $("#sfzhm").textbox("getValue").trim();
     var jslb = $("#jslb").textbox("getValue").trim();
 	var paramDate = {
-        yhmc:yhmc,
+		userName:userName,
         sfzhm:sfzhm,
         jslb:jslb
 	};

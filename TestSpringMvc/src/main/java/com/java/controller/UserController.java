@@ -3,7 +3,8 @@ package com.java.controller;
 import com.java.entity.commons.BaseMessage;
 import com.java.entity.commons.BaseQuery;
 import com.java.entity.LoginModel;
-import com.java.entity.User;
+import com.java.entity.user.User;
+import com.java.entity.user.UserQeury;
 import com.java.service.IUserService;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
@@ -91,16 +92,12 @@ public class UserController {
      */
     @RequestMapping(value = "/getInfo",method = RequestMethod.POST)
     @ResponseBody
-    public BaseQuery<User> getInfo(User user){
-        if("--请选择--".equals(user.getJslb())) {
-            user.setJslb("");
+    public BaseQuery<User> getInfo(UserQeury userQeury){
+        if("--请选择--".equals(userQeury.getJslb())) {
+            userQeury.setJslb("");
         }
     	BaseQuery<User> result = new BaseQuery<User>();
-    	List<User> list = iuserservice.getInfo(user);
-    	int total = list.size();
-    	result.setRows(list);
-    	result.setTotal(total);
-    	return result;
+    	return iuserservice.getInfo(userQeury);
     }
 
    /**

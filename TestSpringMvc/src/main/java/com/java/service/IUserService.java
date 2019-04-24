@@ -6,13 +6,15 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.java.entity.commons.BaseMessage;
+import com.java.entity.commons.BaseQuery;
+import com.java.entity.user.UserQeury;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dao.UserMapper;
 import com.java.entity.LoginModel;
-import com.java.entity.User;
+import com.java.entity.user.User;
 @Service
 public class IUserService {
 	@Autowired
@@ -39,7 +41,7 @@ public class IUserService {
 	 */
 	public String getUsers (HttpServletRequest request,LoginModel model){
 		List<User> users = new ArrayList<User>();
-		users = iUserdaomapper.getUsers(new User());//获取到数据库中的所有的用户
+		users = iUserdaomapper.getAll();//获取到数据库中的所有的用户
 		for(User user:users){
 			if(model.getName().equals(user.getUserName())&&model.getName()!=""
 					&&model.getPassword().equals(user.getPassword())&&model.getPassword()!=""){//如果账号和密码相同
@@ -60,10 +62,14 @@ public class IUserService {
 	* @throws
 	* @author 倪军
 	 */
-	public List<User> getInfo(User user){
-		List<User> users = new ArrayList<User>();
-		users = iUserdaomapper.getUsers(user);//获取到数据库中的所有的用户
-		return users;
+	public BaseQuery<User> getInfo(UserQeury query){
+		BaseQuery<User> baseQuery = new BaseQuery<User>();
+		List<User> rows = new ArrayList<User>();
+		rows = iUserdaomapper.getUsers(query);//获取到数据库中的所有的用户
+		int total = this.iUserdaomapper.getCount(query);
+		baseQuery.setRows(rows);
+		baseQuery.setTotal(total);
+		return baseQuery;
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.java.entity;
+package com.java.entity.user;
 
 public class User {
     private Integer id;

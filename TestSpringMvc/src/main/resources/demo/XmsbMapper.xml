@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.XmsbDao" >
+
+  <sql id="Base_Column_List" >
+    xmlsh, xmmc,xmxz,fzr,xkfl,kssj, jhwcsj, xmcyry
+  </sql>
+
+  <select id="selectXmsbByPrimaryKey" resultType="com.java.entity.XmsbPo" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_kyxm
+    where xmlsh = #{xmlsh}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_kyxm
+    where xmlsh = #{xmlsh}
+  </delete>
+  <insert id="insertSelective" parameterType="com.java.entity.XmsbPo" >
+    insert into t_kyxm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xmlsh != null" >
+        xmlsh,
+      </if>
+      <if test="xmmc != null" >
+        xmmc,
+      </if>
+      <if test="xmxz != null" >
+        xmxz,
+      </if>
+      <if test="fzr != null" >
+        fzr,
+      </if>
+      <if test="xkfl != null" >
+        xkfl,
+      </if>
+      <if test="kssj != null" >
+        kssj,
+      </if>
+      <if test="jhwcsj != null" >
+        jhwcsj,
+      </if>
+      <if test="xmcyry != null" >
+        xmcyry,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xmlsh != null" >
+        #{xmlsh},
+      </if>
+      <if test="xmmc != null" >
+        ${xmmc},
+      </if>
+      <if test="xmxz != null" >
+        ${xmxz},
+      </if>
+      <if test="fzr != null" >
+        ${fzr},
+      </if>
+      <if test="xkfl != null" >
+        ${xkfl},
+      </if>
+      <if test="kssj != null" >
+        ${kssj},
+      </if>
+      <if test="jhwcsj != null" >
+        ${jhwcsj},
+      </if>
+      <if test="xmcyry != null" >
+        ${xmcyry},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.XmsbPo" >
+    update t_kyxm
+    <set >
+      <if test="xmmc != null" >
+        xmmc = ${xmmc},
+      </if>
+      <if test="xmxz != null" >
+        xmxz = ${xmxz},
+      </if>
+      <if test="fzr != null" >
+        fzr = ${fzr},
+      </if>
+      <if test="xkfl != null" >
+        xkfl = ${xkfl},
+      </if>
+      <if test="kssj != null" >
+        kssj = ${kssj},
+      </if>
+      <if test="jhwcsj != null" >
+        jhwcsj = ${jhwcsj},
+      </if>
+      <if test="xmcyry != null" >
+        xmcyry = ${xmcyry},
+      </if>
+    </set>
+    where xmlsh = #{ixmlshd}
+  </update>
+
+</mapper>

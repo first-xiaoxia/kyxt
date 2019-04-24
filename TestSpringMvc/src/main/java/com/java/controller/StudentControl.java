@@ -1,6 +1,6 @@
 package com.java.controller;
 
-import com.java.entity.User;
+import com.java.entity.user.User;
 import com.java.entity.commons.BaseMessage;
 import com.java.entity.commons.BaseQuery;
 import com.java.entity.student.Student;
@@ -13,7 +13,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.ws.spi.http.HttpContext;
 import java.util.Date;
 
 /**

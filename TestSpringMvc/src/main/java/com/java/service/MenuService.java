@@ -11,10 +11,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.java.dao.MenuDao;
-import com.java.entity.LoginModel;
 import com.java.entity.Menu;
 import com.java.entity.MenuSort;
-import com.java.entity.User;
+import com.java.entity.user.User;
 
 @Service
 public class MenuService {

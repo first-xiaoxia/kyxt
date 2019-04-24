@@ -2,7 +2,9 @@ package com.java.dao;
 
 import java.util.List;
 
-import com.java.entity.User;
+import com.java.entity.user.User;
+import com.java.entity.user.UserQeury;
+
 /**
  * dao层
  * @author nj
@@ -30,5 +32,9 @@ public interface UserMapper {
     * @throws
     * @author 倪军
      */
-    List<User> getUsers(User user);
+    List<User> getUsers(UserQeury query);
+
+    List<User> getAll();
+
+    Integer getCount(UserQeury query);
 }
