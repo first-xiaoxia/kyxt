@@ -8,7 +8,7 @@ public class OrganiseUnit {
     private String parentId;//父节点ID
     private String dwbh;//单位编号
     private String dwlx;//单位类型(1:管理机构 2:院系 3:研究机构)
-    private String memo;//描述
+    private String memo;//简介
     private int hasLeaf;//是否包含子节点(0:不包含 1:包含）
     private String fzr;//负责人
     private String lxr;//联系人
@@ -18,11 +18,12 @@ public class OrganiseUnit {
     private String dz;//地址
     private String yb;//邮编
     private String wz;//网址
+    private String dzyx;//电子邮箱
     private String cjdm;//层级代码
     private long creater;//创建人
-    private Date createTime;//创建时间
+    private String createTime;//创建时间
     private long updater;//修改人
-    private Date updateTime;//修改时间
+    private String updateTime;//修改时间
 
     public Integer getId() {
         return id;
@@ -144,6 +145,14 @@ public class OrganiseUnit {
         this.wz = wz;
     }
 
+    public String getDzyx() {
+        return dzyx;
+    }
+
+    public void setDzyx(String dzyx) {
+        this.dzyx = dzyx;
+    }
+
     public String getCjdm() {
         return cjdm;
     }
@@ -160,11 +169,11 @@ public class OrganiseUnit {
         this.creater = creater;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
@@ -176,11 +185,11 @@ public class OrganiseUnit {
         this.updater = updater;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 }

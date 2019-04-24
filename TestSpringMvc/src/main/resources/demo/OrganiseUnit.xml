@@ -77,46 +77,125 @@
     delete from organiseunit
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.java.entity.OrganiseUnit" >
     insert into organiseunit
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="yhmc != null" >
-        yhmc,
+      <if test="name != null and name != ''">
+        NAME,
       </if>
-      <if test="yhxb != null" >
-        yhxb,
+      <if test="parentId != null and parentId != ''">
+        PARENT_ID,
       </if>
-      <if test="sfzhm != null" >
-        sfzhm,
+      <if test="dwbh != null and dwbh != ''">
+        DWBH,
       </if>
-      <if test="userName != null" >
-        user_name,	
+      <if test="dwlx != null and dwlx != ''">
+        DWLX,
       </if>
-      <if test="password != null" >
-        password,
+      <if test="memo != null and memo != ''">
+        MEMO,
       </if>
-      <if test="userType != null" >
-        userType,
+      <if test="hasLeaf != null and hasLeaf != ''">
+        HAS_LEAF,
+      </if>
+      <if test="fzr != null and fzr != ''">
+        FZR,
+      </if>
+      <if test="lxr != null and lxr != ''">
+        LXR,
+      </if>
+      <if test="yjxk != null and yjxk != ''">
+        YJXK,
+      </if>
+      <if test="lxdh != null and lxdh != ''">
+        LXDH,
+      </if>
+      <if test="cz != null and cz != ''">
+        CZ,
+      </if>
+      <if test="dz != null and dz != ''">
+        DZ,
+      </if>
+      <if test="yb != null and yb != ''">
+        YB,
+      </if>
+      <if test="wz != null and wz != ''">
+        WZ,
+      </if>
+      <if test="cjdm != null and cjdm != ''">
+        CJDM,
+      </if>
+      <if test="creater != null and creater != ''">
+        CREATER,
+      </if>
+      <if test="createTime != null and createTime != ''">
+        CREATE_TIME,
+      </if>
+      <if test="updater != null and updater != ''">
+        UPDATER,
+      </if>
+      <if test="updateTime != null and updateTime != ''">
+        UPDATE_TIME,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="yhmc != null" >
-        #{yhmc,jdbcType=VARCHAR},
+      <if test="name != null and name != ''">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="yhxb != null" >
-        #{yhxb,jdbcType=VARCHAR},
+      <if test="parentId != null and parentId != ''">
+        #{parentId,jdbcType=VARCHAR},
       </if>
-      <if test="sfzhm != null" >
-        #{sfzhm,jdbcType=VARCHAR},
+      <if test="dwbh != null and dwbh != ''">
+        #{dwbh,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
+      <if test="dwlx != null and dwlx != ''">
+        #{dwlx,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
+      <if test="memo != null and memo != ''">
+        #{memo,jdbcType=VARCHAR},
       </if>
-      <if test="userType != null" >
-        #{userType,jdbcType=VARCHAR},
+      <if test="hasLeaf != null and hasLeaf != ''">
+        #{hasLeaf,jdbcType=VARCHAR},
+      </if>
+      <if test="fzr != null and fzr != ''">
+        #{fzr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxr != null and lxr != ''">
+        #{lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="yjxk != null and yjxk != ''">
+        #{yjxk,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null and lxdh != ''">
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="cz != null and cz != ''">
+        #{cz,jdbcType=VARCHAR},
+      </if>
+      <if test="dz != null and dz != ''">
+        #{dz,jdbcType=VARCHAR},
+      </if>
+      <if test="yb != null and yb != ''">
+        #{yb,jdbcType=VARCHAR},
+      </if>
+      <if test="wz != null and wz != ''">
+        #{wz,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdm != null and cjdm != ''">
+        #{cjdm,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null and creater != ''">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null and createTime != ''">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null and updater != ''">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null and updateTime != ''">
+        #{updateTime,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

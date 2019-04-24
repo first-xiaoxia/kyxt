@@ -7,6 +7,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class OrganiseUnitService {
@@ -14,6 +17,21 @@ public class OrganiseUnitService {
     @Autowired
     private OrganiseUnitDao organiseUnitDao;
     private static final Logger logger = Logger.getLogger(OrganiseUnitService.class);
+
+    /**
+     *
+     * @Title: getInfo
+     * @Description:
+     * @param @return
+     * @return List<User>
+     * @throws
+     * @author 倪军
+     */
+    public List<OrganiseUnit> getInfo(OrganiseUnit organiseUnit){
+        List<OrganiseUnit> organiseUnits = new ArrayList<OrganiseUnit>();
+        organiseUnits = organiseUnitDao.getOrganiseUnit(organiseUnit);//获取到数据库中的所有的组织机构
+        return organiseUnits;
+    }
 
     /**
      * 通过id查找组织机构

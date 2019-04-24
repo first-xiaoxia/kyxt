@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/common.css"/>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/demo.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/user.css">
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/common/common.js"></script>
+	<style type="text/css">
+		.col-zdy-2{
+			background:#eee;
+			width:15%;
+		}
+		.control-label{
+			text-align:center;
+		}
+		.tablebox{
+			margin: auto;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<table id="tab" style="height: auto"></table>
+	<div id="tb">
+		<div class="btns" id="btn1">
+		<a href="#" id="sear" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="doedit()">修改</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="add()">新增</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="doClear()">重置</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="doDelete()">删除</a>
+		</div>
+		<div id="term" class="terms" >
+
+			<div>单位名称<input class="easyui-textbox" id="name_cx" style="width: 150px;height: 25px;"></div>
+			<div>单位代码<input class="easyui-textbox" id="dwbh_cx" style="width: 150px;height: 25px;"></div>
+			<div>单位类型<select id="dwlx_cx" class="easyui-combobox"  style="width: 155px">
+				<option  >--请选择--</option>
+				<option  >管理机构</option>
+				<option >院系</option>
+				<option >研究机构</option>
+			</select>
+			</div>
+		</div>
+	</div>
+
+	<div id="add-win" class="easyui-dialog" title="新增组织机构" buttons="#addFormbtn"
+		 data-options="closed:true,iconCls:'icon-save',modal:true" style="width:630px;height:390px;">
+		<form id="addForm" class="ui-form" method="post">
+			<input type="hidden" name="sid">
+			<div class="ui-edit">
+				<table class="tablebox">
+					<tr>
+						<td class="col-zdy-2" ><label class="control-label">单位类型:</label></td>
+						<td colspan="3">
+							<div>
+								<span><input type="radio" name="dwlx" value="1"/>管理机构</span>
+								<span><input type="radio" name="dwlx" value="2"/>院系</span>
+								<span><input type="radio" name="dwlx" value="3"/>研究机构</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-zdy-2"><label>单位名称:</label></td>
+						<td colspan="3">
+							<input type="text" class="easyui-textbox" id="name"  style="width:50%"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-zdy-2"><label class="control-label">单位编号:</label></td>
+						<td><input type="text" class="easyui-textbox" id="dwbh" name="dwbh" /></td>
+						<td class="col-zdy-2"><label class="control-label">负责人:</label></td>
+						<td><input type="text" class="easyui-textbox" id="fzr" name="fzr" /></td>
+					</tr>
+					<tr>
+						<td class="col-zdy-2"><label class="control-label">联系人:</label></td>
+						<td><input type="text" class="easyui-textbox" id="lxr" name="lxr" /></td>
+						<td class="col-zdy-2"><label class="control-label">成立日期:</label></td>
+						<td >
+							<input class="easyui-datebox" id="createTime" name="createTime" data-options="formatter:myformatter,parser:myparser,width:150,prompt: '成立日期'"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-zdy-2"><label class="control-label">一级学科:</label></td>
+						<td colspan="3">
+							<select class="easyui-combobox" id="yjxk" name="yjxk" data-options="width: 200,prompt: '一级学科'">
+								<option value="1" >总经办</option>
+								<option value="2" >研发部</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-zdy-2"><label class="control-label">联系电话:</label></td>
+						<td><input type="text" class="easyui-numberbox" id="lxdh" name="lxdh" /></td>
+						<td class="col-zdy-2"><label class="control-label">传真:</label></td>
+						<td><input type="text" class="easyui-textbox" id="cz" name="cz" /></td>
+					</tr>
+					<tr>
+						<td class="col-zdy-2"><label class="control-label">地址:</label></td>
+						<td><input type="text" class="easyui-textbox" id="dz" name="dz" /></td>
+						<td class="col-zdy-2"><label class="control-label">邮编:</label></td>
+						<td><input type="text" class="easyui-textbox" id="yb" name="yb" /></td>
+					</tr>
+					<tr>
+						<td class="col-zdy-2"><label class="control-label">网址:</label></td>
+						<td><input type="text" class="easyui-textbox" id="wz" name="wz" /></td>
+						<td class="col-zdy-2"><label class="control-label">电子邮箱:</label></td>
+						<td><input type="text" class="easyui-textbox" id="dzyx" name="dzyx" /></td>
+					</tr>
+					<tr>
+						<td class="col-zdy-2"><label class="control-label">简介:</label></td>
+						<td colspan="3">
+							<input class="easyui-textbox" data-options="multiline:true" id="memo" name="memo" value="" style="font-size: 12px; font-family: 微软雅黑; margin: 0px;width: 465px; height: 92px;">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div style="text-align:center;padding-top: 30px;">
+								<a href="javascript:void(0)" class="easyui-linkbutton" id="add-btn-open-submit">保存</a>
+								<a href="javascript:void(0)" class="easyui-linkbutton" id="add-btn-open-close">关闭</a>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	</div>
+	
+</body>
+<script type="text/javascript" src="/TestSpringMvc/scripts/YDataGrid.js"></script>
+<script type="text/javascript" src="/TestSpringMvc/scripts/organiseunit.js"></script>
+</html>
