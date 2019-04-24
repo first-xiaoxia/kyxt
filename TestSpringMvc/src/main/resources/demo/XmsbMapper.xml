@@ -6,18 +6,73 @@
     xmlsh, xmmc,xmxz,fzr,xkfl,kssj, jhwcsj, xmcyry
   </sql>
 
-  <select id="selectXmsbByPrimaryKey" resultType="com.java.entity.XmsbPo" parameterType="java.lang.String" >
+  <select id="selectXmsbByPrimaryKey" resultType="com.java.entity.kyxm.XmsbPo" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from t_kyxm
     where xmlsh = #{xmlsh}
   </select>
 
+  <select id="getKyxmList" resultType="com.java.entity.kyxm.XmsbPo">
+    select <include refid="Base_Column_List"/>
+    from t_kyxm
+    where 1=1
+    <if test="xmmc != null and xmmc != ''">
+      AND xmmc LIKE concat('%',#{xmmc},'%')
+    </if>
+    <if test="xmxz != null" >
+      xmxz = ${xmxz},
+    </if>
+    <if test="fzr != null and fzr != ''">
+      AND fzr LIKE concat('%',#{fzr},'%')
+    </if>
+    <if test="xkfl != null" >
+      xkfl = ${xkfl},
+    </if>
+    <if test="kssj != null" >
+      kssj gt;= to_date(${startTime},'yyyy-MM-dd HH:mm:ss'),
+    </if>
+    <if test="kssj != null" >
+      kssj lt;= to_date(${endTime},'yyyy-MM-dd HH:mm:ss'),
+    </if>
+    <if test="xmcyry != null and xmcyry != ''">
+      AND xmcyry LIKE concat('%',#{xmcyry},'%')
+    </if>
+    LIMIT #{page},#{rows}
+  </select>
+
+  <select id="getCount" resultType="java.lang.Integer">
+    select count(1)
+    from t_kyxm
+    where 1=1
+    <if test="xmmc != null and xmmc != ''">
+      AND xmmc LIKE concat('%',#{xmmc},'%')
+    </if>
+    <if test="xmxz != null" >
+      xmxz = ${xmxz},
+    </if>
+    <if test="fzr != null and fzr != ''">
+      AND fzr LIKE concat('%',#{fzr},'%')
+    </if>
+    <if test="xkfl != null" >
+      xkfl = ${xkfl},
+    </if>
+    <if test="kssj != null" >
+      kssj gt;= to_date(${startTime},'yyyy-MM-dd HH:mm:ss'),
+    </if>
+    <if test="kssj != null" >
+      kssj lt;= to_date(${endTime},'yyyy-MM-dd HH:mm:ss'),
+    </if>
+    <if test="xmcyry != null and xmcyry != ''">
+      AND xmcyry LIKE concat('%',#{xmcyry},'%')
+    </if>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from t_kyxm
     where xmlsh = #{xmlsh}
   </delete>
-  <insert id="insertSelective" parameterType="com.java.entity.XmsbPo" >
+  <insert id="insertSelective" parameterType="com.java.entity.kyxm.XmsbPo" >
     insert into t_kyxm
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="xmlsh != null" >
@@ -72,7 +127,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.XmsbPo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.kyxm.XmsbPo" >
     update t_kyxm
     <set >
       <if test="xmmc != null" >

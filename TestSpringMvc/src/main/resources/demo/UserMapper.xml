@@ -23,7 +23,7 @@
     from t_user
   </select>
   
-  <select id="getUsers" resultType="com.java.entity.user.User" parameterType="com.java.entity.user.UserQeury" >
+  <select id="getUsers" resultType="com.java.entity.user.User" parameterType="com.java.entity.commons.BaseQuery" >
   select
   <include refid="Base_Column_List" />
   from t_user
@@ -43,7 +43,7 @@
   LIMIT #{page},#{rows}
 </select>
 
-  <select id="getCount" resultType="java.lang.Integer" parameterType="com.java.entity.user.UserQeury" >
+  <select id="getCount" resultType="java.lang.Integer" parameterType="com.java.entity.commons.BaseQuery" >
     select count(1)
     from t_user
     WHERE 1 = 1

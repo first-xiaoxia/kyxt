@@ -5,7 +5,7 @@
     id, NAME, sCLASS, STUDENT_ID,age,height,weight,CREATER,CREATE_TIME,UPDATER,UPDATE_TIME
   </sql>
   <!-- 获取所有的学生的行数据 -->
-  <select id="students" resultType="com.java.entity.student.Student" parameterType="com.java.entity.student.StudentQeury" >
+  <select id="students" resultType="com.java.entity.student.Student" parameterType="com.java.entity.commons.BaseQuery" >
     select 
     <include refid="Base_Column_List" />
     from students
@@ -18,7 +18,7 @@
     LIMIT #{page},#{rows}
   </select>
   <!-- 获取学生行数据的总条数 -->
-  <select id="getStudentsTotal" resultType="java.lang.Integer" parameterType="com.java.entity.student.StudentQeury" >
+  <select id="getStudentsTotal" resultType="java.lang.Integer" parameterType="com.java.entity.commons.BaseQuery" >
     select COUNT(1)
     from students
     where 1 = 1
@@ -30,7 +30,7 @@
   </select>
 
   <!-- 修改学生信息-->
-  <update id="editStudent" parameterType="com.java.entity.student.StudentQeury" >
+  <update id="editStudent" parameterType="com.java.entity.commons.BaseQuery" >
      UPDATE students
       SET `NAME` = #{name},STUDENT_ID = #{studentId},sCLASS = #{sclass},age = #{age},
       height = #{height},weight = #{weight},UPDATER = #{updater},UPDATE_TIME = #{updateTime}

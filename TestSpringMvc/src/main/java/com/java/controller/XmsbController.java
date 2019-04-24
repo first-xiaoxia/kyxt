@@ -1,12 +1,15 @@
 package com.java.controller;
 
-import com.java.entity.XmsbPo;
+import com.java.entity.commons.BaseQuery;
+import com.java.entity.commons.BaseResult;
+import com.java.entity.kyxm.XmsbPo;
 import com.java.service.XmsbService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
@@ -48,7 +51,8 @@ public class XmsbController {
         }
     }
 
-    @RequestMapping(value = "/add",method = RequestMethod.GET)
+    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @ResponseBody
     public XmsbPo add(XmsbPo xmsbPo){
         try {
             if(xmsbPo == null){
@@ -77,6 +81,23 @@ public class XmsbController {
         }
         return xmsbPo;
     }
+
+    @RequestMapping(value = "/getKymxPageInfo",method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResult<XmsbPo> getKymxPageInfo(BaseQuery query){
+        BaseResult<XmsbPo> baseQuery = new BaseResult<XmsbPo>();
+        try {
+            if(query == null){
+                throw new Exception("传入参数不合法");
+            }
+            xmsbService.getKymxPageInfo(query);
+        }catch (Exception e){
+            logger.error("科研项目列表查询失败");
+            e.printStackTrace();
+        }
+        return baseQuery;
+    }
+
 
 
 }

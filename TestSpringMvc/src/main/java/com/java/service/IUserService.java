@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.java.entity.commons.BaseMessage;
 import com.java.entity.commons.BaseQuery;
-import com.java.entity.user.UserQeury;
+import com.java.entity.commons.BaseResult;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,8 +62,8 @@ public class IUserService {
 	* @throws
 	* @author 倪军
 	 */
-	public BaseQuery<User> getInfo(UserQeury query){
-		BaseQuery<User> baseQuery = new BaseQuery<User>();
+	public BaseResult<User> getInfo(BaseQuery query){
+		BaseResult<User> baseQuery = new BaseResult<User>();
 		List<User> rows = new ArrayList<User>();
 		rows = iUserdaomapper.getUsers(query);//获取到数据库中的所有的用户
 		int total = this.iUserdaomapper.getCount(query);

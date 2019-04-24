@@ -1,4 +1,4 @@
-package com.java.entity;
+package com.java.entity.kyxm;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +14,9 @@ public class XmsbPo implements Serializable {
     private Date kssj;
     private Date jhwcsj;
     private String xmcyry;
+    private Date cjsj;
+    private String skssj;
+    private String sjhwcsj;
 
     public String getXmlsh() {
         return xmlsh;

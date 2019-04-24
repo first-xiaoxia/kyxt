@@ -79,40 +79,40 @@
 		</form>
 	</div>
 	<div id="wid1" class="easyui-dialog"
-		 style="width:100%; height:100%" closed="true" modal="true" title="新增用户" modal="true">
-		<form class="form" id="form2" style="text-align: center" >
+		 style="width:100%; height:100%" closed="true" modal="true" title="项目申报" modal="true">
+		<form class="form" id="kyxm_add_form" style="text-align: center" >
 			<div style="width: 98%">
-				<span>账号  ：</span><input id="f2userName" name="userName" class="easyui-textbox" style="width: 240px" >
+				<span>项目名称  ：</span><input id="add_xmmc" name="xmmc" class="easyui-textbox" style="width: 240px" >
 
 			</div>
-			<div style="width: 98%"><span>密码：</span><input id="f2password" name = "password" class="easyui-textbox"  style="width: 240px">
+			<div style="width: 98%"><span>项目性质：</span><input id="add_xmxz" name = "xmxz" class="easyui-combobox"  style="width: 240px">
 
 			</div>
 			<div style="width: 98%">
-				<span>姓名  ：</span><input id="f2yhmc" name="yhmc" class="easyui-textbox"  style="width: 240px">
+				<span>学科分类  ：</span><input id="add_xkfl" name="xkfl" class="easyui-textbox"  style="width: 240px">
 			</div>
 			<div style="width: 98%">
-				<span>性别：</span>
-				</span><input id="f2yhxb" name="yhxb" class="easyui-combobox"  style="width: 240px">
+				<span>开始时间：</span>
+				</span><input id="add_kssj" name="kssj" class="easyui-datetimebox" data-options="formatter:ww3,parser:w3" style="width: 240px">
 			</div>
 
 			<div style="width: 98%">
-				<span>岗位：</span>
-				<input id="f2jslb" name = "jslb"  class="easyui-combobox"  style="width: 240px"/>
+				<span>完成时间：</span>
+				<input id="add_jhwcsj" name = "jhwcsj"  class="easyui-datetimebox" data-options="formatter:ww3,parser:w3"  style="width: 240px"/>
 
 				</input>
 			</div>
 			<div style="width: 98%">
-				<span>类型：</span><input id="f2userType" name = "userType" class="easyui-combobox"  style="width: 240px">
+				<span>项目责任人：</span><input id="add_fzr" name = "fzr" class="easyui-textbox"  style="width: 240px">
 
 			</div>
 			<div style="width: 98%">
-				<span>证件号：</span><input id="f2sfzhm" name = "sfzhm" class="easyui-textbox"  style="width: 240px">
+				<span>项目参与人：</span><input id="add_xmcyry" name = "xmcyry" class="easyui-textbox"  style="width: 240px">
 
 			</div>
 
 			<div class="btnss">
-				<a href="#" class="easyui-linkbutton"   onclick="dosave1()">保存</a>
+				<a href="#" class="easyui-linkbutton"   onclick="addSave()">保存</a>
 				<a href="#" class="easyui-linkbutton"   onclick="doback()">返回</a>
 			</div>
 
@@ -121,5 +121,5 @@
 	
 	
 </body>
-<script type="text/javascript" src="/TestSpringMvc/scripts/sysUser.js"></script>
+<script type="text/javascript" src="/TestSpringMvc/scripts/kyxm.js"></script>
 </html>

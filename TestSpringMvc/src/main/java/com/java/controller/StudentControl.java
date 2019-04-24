@@ -1,10 +1,10 @@
 package com.java.controller;
 
+import com.java.entity.commons.BaseQuery;
+import com.java.entity.commons.BaseResult;
 import com.java.entity.user.User;
 import com.java.entity.commons.BaseMessage;
-import com.java.entity.commons.BaseQuery;
 import com.java.entity.student.Student;
-import com.java.entity.student.StudentQeury;
 import com.java.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +29,7 @@ public class StudentControl {
     /**
      *
     *  @param sqeury
-    * @return BaseQuery
+    * @return BaseResult
     * @author 倪军
     * @time 2017/3/17 9:44
     * @version 0.1
@@ -37,8 +37,8 @@ public class StudentControl {
     */
     @RequestMapping("getStudent")
     @ResponseBody
-    public BaseQuery<Student> getStudent(StudentQeury sqeury){
-        BaseQuery<Student> base = new BaseQuery<Student>();
+    public BaseResult<Student> getStudent(BaseQuery sqeury){
+        BaseResult<Student> base = new BaseResult<Student>();
         base = this.StudentService.getStudent(sqeury);
         return base;
     }

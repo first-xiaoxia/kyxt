@@ -2,9 +2,9 @@ package com.java.controller;
 
 import com.java.entity.commons.BaseMessage;
 import com.java.entity.commons.BaseQuery;
+import com.java.entity.commons.BaseResult;
 import com.java.entity.LoginModel;
 import com.java.entity.user.User;
-import com.java.entity.user.UserQeury;
 import com.java.service.IUserService;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -86,17 +85,17 @@ public class UserController {
     * @Title: getInfo
     * @Description: 
     * @param @return    
-    * @return BaseQuery<User>    
+    * @return BaseResult<User>
     * @throws
     * @author 倪军
      */
     @RequestMapping(value = "/getInfo",method = RequestMethod.POST)
     @ResponseBody
-    public BaseQuery<User> getInfo(UserQeury userQeury){
+    public BaseResult<User> getInfo(BaseQuery userQeury){
         if("--请选择--".equals(userQeury.getJslb())) {
             userQeury.setJslb("");
         }
-    	BaseQuery<User> result = new BaseQuery<User>();
+    	BaseResult<User> result = new BaseResult<User>();
     	return iuserservice.getInfo(userQeury);
     }
 

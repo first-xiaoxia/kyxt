@@ -1,6 +1,6 @@
 $(function(){
 	$('#tab').datagrid({
-  		url:path+'/user/getInfo',
+  		url:path+'/xmsb/getKymxPageInfo',
   		rownumbers:true,//是否显示行号
    	 	striped:true,//是否显示斑马线效果
    	 	singleSelect:true,//只允许选择一行
@@ -9,8 +9,8 @@ $(function(){
 		fit:true,//是否自适应父容器
 		fitColumns:true,//自动使列适应表格宽度以防止出现水平滚动
 		scrollbarSize:0,//滚动条的宽度
-		pageList:[50, 100, 300],//初始化页面大小选择列表
-		pageSize:50,
+		pageList:[10, 50, 100],//初始化页面大小选择列表
+		pageSize:10,
 		showFooter:true,//是否显示行脚
 		loadMsg :"加载数据中...",//加载数据时显示的提示消息
 		toolbar : '#tb',
@@ -46,24 +46,22 @@ function getParms() {
 	return paramDate;
 }
 
-function getParms1() {
-    var id = $("#fid").textbox('getValue');
-    var yhmc = $("#fyhmc").textbox('getValue');
-    var yhxb = $("#fyhxb").textbox('getValue');
-    var username = $("#fuserName").textbox('getValue');
-    var password = $("#fpassword").textbox('getValue');
-    var jslb = $("#fjslb").textbox('getValue');
-    var sfzhm = $("#fsfzhm").textbox('getValue');
-    var userType = $("#fuserType").textbox('getValue');
+function getParmsadd() {
+    var xmmc = $("#add_xmmc").textbox('getValue');
+    var xmxz = $("#add_xmxz").textbox('getValue');
+    var xmcyry = $("#add_xmcyry").textbox('getValue');
+    var fzr = $("#add_fzr").textbox('getValue');
+    var kssj = $("#add_kssj").textbox('getValue');
+    var xkfl = $("#add_xkfl").textbox('getValue');
+    var jhwcsj = $("#add_jhwcsj").textbox('getValue');
     var params = {
-        id:id,
-        yhmc:yhmc,
-        username:username,
-        yhxb:yhxb,
-        jslb:jslb,
-        sfzhm:sfzhm,
-        password:password,
-        userType:userType
+        xmmc:xmmc,
+        xmxz:xmxz,
+        xmcyry:xmcyry,
+        fzr:fzr,
+        //kssj:kssj,
+        xkfl:xkfl
+        //jhwcsj:jhwcsj
     };
     return params;
 }
@@ -196,9 +194,9 @@ doedit = function () {
  */
 doadd = function () {
 	$("#wid1").window('open');
-    $("#form2").form('reset');
-    $("#f2yhxb").combobox({
-        data:[{label:'男',type:"男"},{label:'女',type:"女"}],
+    $("#kyxm_add_form").form('reset');
+    $("#add_xmxz").combobox({
+        data:[{label:'1',type:"国家级"},{label:'2',type:"省级"},{label:'3',type:"省级以下"},{label:'4',type:"其他"}],
         valueField:"label",
         textField:"type",
         editable:false,
@@ -211,33 +209,7 @@ doadd = function () {
 
     });
 
-    $("#f2jslb").combobox({
-        data:[{label:'教师岗',type:"教师岗"},{label:'管理岗',type:"管理岗"}],
-        valueField:"label",
-        textField:"type",
-        editable:false,
-        panelHeight:"auto",
-        onLoadSuccess:function(data) {
-            console.log("222")
-            var array=$(this).combobox("getData");
-            $(this).combobox('select',array[0].label);
 
-        }
-    });
-
-    $("#f2userType").combobox({
-        data:[{label:'1',type:"超级管理员"},{label:'2',type:"普通用户"}],
-        valueField:"label",
-        textField:"type",
-        editable:false,
-        panelHeight:"auto",
-        onLoadSuccess:function(data) {
-            console.log("333")
-            var array=$(this).combobox("getData");
-            $(this).combobox('select',array[0].label);
-
-        }
-    });
 
 }
 
@@ -252,13 +224,12 @@ doback = function () {
 /**
  * 保存
  */
-dosave = function () {
-
-    console.log(getParms1());
+addSave = function () {
+    console.log(getParmsadd());
 	$.ajax({
-		url:path+'/user/editUser',
+		url:path+'/xmsb/add',
 		method:'post',
-		data:getParms1(),
+		data:getParmsadd(),
 		success:function (data) {
 			console.log(data);
 			$("#wid").window('close');

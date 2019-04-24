@@ -3,8 +3,8 @@ package com.java.service;
 import com.java.dao.StudentDao;
 import com.java.entity.commons.BaseMessage;
 import com.java.entity.commons.BaseQuery;
+import com.java.entity.commons.BaseResult;
 import com.java.entity.student.Student;
-import com.java.entity.student.StudentQeury;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,14 +25,14 @@ public class StudentService {
     /**
      *
     *  @param qeury
-    * @return BaseQuery<Student>
+    * @return BaseResult<Student>
     * @author 倪军
     * @time 2017/3/17 10:54
     * @version 0.1
     * @sice 0.1
     */
-    public BaseQuery<Student> getStudent(StudentQeury qeury){
-        BaseQuery<Student> base = new BaseQuery<Student>();
+    public BaseResult<Student> getStudent(BaseQuery qeury){
+        BaseResult<Student> base = new BaseResult<Student>();
         List<Student> rows = this.studentDao.students(qeury);//获得所有的行数据
         int total = this.studentDao.getStudentsTotal(qeury);
         base.setRows(rows);
@@ -43,7 +43,7 @@ public class StudentService {
     /**
      *
      *  @param student
-     * @return BaseQuery<Student>
+     * @return BaseResult<Student>
      * @author 倪军
      * @time 2017/3/17 10:54
      * @version 0.1

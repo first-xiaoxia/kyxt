@@ -1,7 +1,7 @@
 package com.java.dao;
 
+import com.java.entity.commons.BaseQuery;
 import com.java.entity.student.Student;
-import com.java.entity.student.StudentQeury;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface StudentDao {
 
-    public List<Student> students(StudentQeury qeury);
+    public List<Student> students(BaseQuery qeury);
 
-    public int getStudentsTotal(StudentQeury qeury);
+    public int getStudentsTotal(BaseQuery qeury);
 
     /**
      * 修改student信息
