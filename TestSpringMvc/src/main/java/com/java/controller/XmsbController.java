@@ -1,5 +1,6 @@
 package com.java.controller;
 
+import com.java.entity.commons.BaseMessage;
 import com.java.entity.commons.BaseQuery;
 import com.java.entity.commons.BaseResult;
 import com.java.entity.kyxm.XmsbPo;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 @RestController
@@ -53,49 +56,56 @@ public class XmsbController {
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     @ResponseBody
-    public XmsbPo add(XmsbPo xmsbPo){
+    public BaseMessage add(XmsbPo xmsbPo){
+        BaseMessage message = new BaseMessage();
         try {
             if(xmsbPo == null){
                 throw new Exception("传入参数不合法");
             }
             xmsbService.insertSelective(xmsbPo);
+            message.setMessage("项目申报成功");
         }catch (Exception e){
-            logger.error("删除项目申报失败");
-            e.printStackTrace();
+            logger.error("新增项目申报失败");
+            message.setMessage("新增项目申报失败");
         }
-        String uuid = UUID.randomUUID().toString();
-        return xmsbPo;
+        return message;
     }
 
 
     @RequestMapping(value = "/update",method = RequestMethod.GET)
-    public XmsbPo update(XmsbPo xmsbPo){
+    public BaseMessage update(XmsbPo xmsbPo){
+        BaseMessage message = new BaseMessage();
         try {
             if(xmsbPo == null){
-                throw new Exception("传入参数不合法");
+                message.setMessage("传入参数不合法");
+                return message;
             }
             xmsbService.updateByPrimaryKeySelective(xmsbPo);
+            message.setMessage("项目申报修改成功");
         }catch (Exception e){
             logger.error("删除项目申报失败");
-            e.printStackTrace();
+            message.setMessage("该项目修改失败");
         }
-        return xmsbPo;
+        return message;
     }
 
-    @RequestMapping(value = "/getKymxPageInfo",method = RequestMethod.GET)
+    @RequestMapping(value = "/getKymxPageInfo",method = RequestMethod.POST)
     @ResponseBody
     public BaseResult<XmsbPo> getKymxPageInfo(BaseQuery query){
-        BaseResult<XmsbPo> baseQuery = new BaseResult<XmsbPo>();
+        BaseResult<XmsbPo> result = new BaseResult<XmsbPo>();
         try {
             if(query == null){
                 throw new Exception("传入参数不合法");
             }
-            xmsbService.getKymxPageInfo(query);
+            if ("0".equals(query.getXmxz())) {
+                query.setXmxz("");
+            }
+            result = xmsbService.getKymxPageInfo(query);
         }catch (Exception e){
             logger.error("科研项目列表查询失败");
             e.printStackTrace();
         }
-        return baseQuery;
+        return result;
     }
 
 

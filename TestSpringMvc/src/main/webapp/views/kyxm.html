@@ -25,14 +25,18 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="doDelete()">删除</a>
 		</div>
 		<div id="term" class="terms" >
-			<div>证件号码<input class="easyui-textbox" id="sfzhm" style="width: 150px;height: 25px;"></div>
-			<div>用户名称<input class="easyui-textbox" id="userName" style="width: 150px;height: 25px;"></div>
-			<div>教师类别<select id="jslb" name = "jslb"  class="easyui-combobox"  style="width: 155px">
-				<option  >--请选择--</option>
-				<option  >教师岗</option>
-				<option >管理岗</option>
+			<div>项目名称<input class="easyui-textbox" id="xmmc" style="width: 150px;height: 25px;"></div>
+			<div>项目性质<select id="xmxz" name = "xmxz"  class="easyui-combobox"  style="width: 155px">
+				<option value="0" >--请选择--</option>
+				<option  value="1">国家级</option>
+				<option value="2">省级</option>
+				<option  value="3">省级以下</option>
+				<option value="4">其他</option>
 			</select>
 			</div>
+			<div>开始时间<input id="starDate" name = "starDate"  class="easyui-datetimebox" data-options="formatter:ww3,parser:w3,editable:false" style="width: 155px" /></div>
+			<div>结束时间<input id="endDate" name = "endDate"  class="easyui-datetimebox" data-options="formatter:ww3,parser:w3,editable:false" style="width: 155px" /></div>
+
 		</div>
 	</div>
 	<div id="wid" class="easyui-window" data-options="title:'修改用户信息',collapsible:false,
@@ -93,12 +97,12 @@
 			</div>
 			<div style="width: 98%">
 				<span>开始时间：</span>
-				</span><input id="add_kssj" name="kssj" class="easyui-datetimebox" data-options="formatter:ww3,parser:w3" style="width: 240px">
+				</span><input id="add_kssj" name="kssj" class="easyui-datetimebox" data-options="formatter:ww3,parser:w3,editable:false" style="width: 240px">
 			</div>
 
 			<div style="width: 98%">
 				<span>完成时间：</span>
-				<input id="add_jhwcsj" name = "jhwcsj"  class="easyui-datetimebox" data-options="formatter:ww3,parser:w3"  style="width: 240px"/>
+				<input id="add_jhwcsj" name = "jhwcsj"  class="easyui-datetimebox" data-options="formatter:ww3,parser:w3,editable:false"  style="width: 240px"/>
 
 				</input>
 			</div>

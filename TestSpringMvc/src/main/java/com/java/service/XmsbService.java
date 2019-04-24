@@ -5,9 +5,14 @@ import com.java.entity.commons.BaseQuery;
 import com.java.entity.commons.BaseResult;
 import com.java.entity.kyxm.XmsbPo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.DateFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class XmsbService {
@@ -26,7 +31,12 @@ public class XmsbService {
     }
 
     public void insertSelective(XmsbPo xmsbPo)throws Exception{
-        xmsbDao.insertSelective(xmsbPo);
+       String uuid = UUID.randomUUID().toString().replace("-","");
+       SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       String cjsj = simpleDate.format(new Date());
+       xmsbPo.setCjsj(cjsj);
+       xmsbPo.setXmlsh(uuid);
+       xmsbDao.insertSelective(xmsbPo);
     }
 
     public void updateByPrimaryKeySelective(XmsbPo xmsbPo) throws Exception{

@@ -20,20 +20,20 @@
     <if test="xmmc != null and xmmc != ''">
       AND xmmc LIKE concat('%',#{xmmc},'%')
     </if>
-    <if test="xmxz != null" >
-      xmxz = ${xmxz},
+    <if test="xmxz != null and xmxz != ''" >
+      AND xmxz = #{xmxz}
     </if>
     <if test="fzr != null and fzr != ''">
       AND fzr LIKE concat('%',#{fzr},'%')
     </if>
     <if test="xkfl != null" >
-      xkfl = ${xkfl},
+      AND xkfl = #{xkfl}
     </if>
-    <if test="kssj != null" >
-      kssj gt;= to_date(${startTime},'yyyy-MM-dd HH:mm:ss'),
+    <if test="starDate != null and starDate != ''" >
+      AND kssj &gt;= #{starDate}
     </if>
-    <if test="kssj != null" >
-      kssj lt;= to_date(${endTime},'yyyy-MM-dd HH:mm:ss'),
+    <if test="endDate != null and endDate != ''" >
+      AND kssj &lt;= #{endDate}
     </if>
     <if test="xmcyry != null and xmcyry != ''">
       AND xmcyry LIKE concat('%',#{xmcyry},'%')
@@ -48,20 +48,20 @@
     <if test="xmmc != null and xmmc != ''">
       AND xmmc LIKE concat('%',#{xmmc},'%')
     </if>
-    <if test="xmxz != null" >
-      xmxz = ${xmxz},
+    <if test="xmxz != null and xmxz != ''" >
+      AND xmxz = #{xmxz}
     </if>
     <if test="fzr != null and fzr != ''">
       AND fzr LIKE concat('%',#{fzr},'%')
     </if>
     <if test="xkfl != null" >
-      xkfl = ${xkfl},
+      AND xkfl = #{xkfl}
     </if>
-    <if test="kssj != null" >
-      kssj gt;= to_date(${startTime},'yyyy-MM-dd HH:mm:ss'),
+    <if test="starDate != null and starDate != ''" >
+      AND kssj &gt;= #{starDate}
     </if>
-    <if test="kssj != null" >
-      kssj lt;= to_date(${endTime},'yyyy-MM-dd HH:mm:ss'),
+    <if test="endDate != null and endDate != ''" >
+      AND kssj &lt;= #{endDate}
     </if>
     <if test="xmcyry != null and xmcyry != ''">
       AND xmcyry LIKE concat('%',#{xmcyry},'%')
@@ -105,25 +105,25 @@
         #{xmlsh},
       </if>
       <if test="xmmc != null" >
-        ${xmmc},
+        #{xmmc},
       </if>
       <if test="xmxz != null" >
-        ${xmxz},
+        #{xmxz},
       </if>
       <if test="fzr != null" >
-        ${fzr},
+        #{fzr},
       </if>
       <if test="xkfl != null" >
-        ${xkfl},
+        #{xkfl},
       </if>
       <if test="kssj != null" >
-        ${kssj},
+        #{kssj},
       </if>
       <if test="jhwcsj != null" >
-        ${jhwcsj},
+        #{jhwcsj},
       </if>
       <if test="xmcyry != null" >
-        ${xmcyry},
+        #{xmcyry},
       </if>
     </trim>
   </insert>
@@ -131,25 +131,25 @@
     update t_kyxm
     <set >
       <if test="xmmc != null" >
-        xmmc = ${xmmc},
+        xmmc = #{xmmc},
       </if>
       <if test="xmxz != null" >
-        xmxz = ${xmxz},
+        xmxz = #{xmxz},
       </if>
       <if test="fzr != null" >
-        fzr = ${fzr},
+        fzr = #{fzr},
       </if>
       <if test="xkfl != null" >
-        xkfl = ${xkfl},
+        xkfl = #{xkfl},
       </if>
       <if test="kssj != null" >
-        kssj = ${kssj},
+        kssj = #{kssj},
       </if>
       <if test="jhwcsj != null" >
-        jhwcsj = ${jhwcsj},
+        jhwcsj = #{jhwcsj},
       </if>
       <if test="xmcyry != null" >
-        xmcyry = ${xmcyry},
+        xmcyry = #{xmcyry},
       </if>
     </set>
     where xmlsh = #{ixmlshd}

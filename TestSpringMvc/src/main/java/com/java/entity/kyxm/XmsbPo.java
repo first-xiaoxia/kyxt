@@ -1,7 +1,6 @@
 package com.java.entity.kyxm;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class XmsbPo implements Serializable {
     private static final long serialVersionUID = 4302857762129866534L;
@@ -11,12 +10,10 @@ public class XmsbPo implements Serializable {
     private String xmxz;
     private String fzr;
     private String xkfl;
-    private Date kssj;
-    private Date jhwcsj;
+    private String kssj;
+    private String jhwcsj;
     private String xmcyry;
-    private Date cjsj;
-    private String skssj;
-    private String sjhwcsj;
+    private String cjsj;
 
     public String getXmlsh() {
         return xmlsh;
@@ -58,19 +55,19 @@ public class XmsbPo implements Serializable {
         this.xkfl = xkfl;
     }
 
-    public Date getKssj() {
+    public String getKssj() {
         return kssj;
     }
 
-    public void setKssj(Date kssj) {
+    public void setKssj(String kssj) {
         this.kssj = kssj;
     }
 
-    public Date getJhwcsj() {
+    public String getJhwcsj() {
         return jhwcsj;
     }
 
-    public void setJhwcsj(Date jhwcsj) {
+    public void setJhwcsj(String jhwcsj) {
         this.jhwcsj = jhwcsj;
     }
 
@@ -80,5 +77,13 @@ public class XmsbPo implements Serializable {
 
     public void setXmcyry(String xmcyry) {
         this.xmcyry = xmcyry;
+    }
+
+    public String getCjsj() {
+        return cjsj;
+    }
+
+    public void setCjsj(String cjsj) {
+        this.cjsj = cjsj;
     }
 }

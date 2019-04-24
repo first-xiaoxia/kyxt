@@ -7,7 +7,7 @@ $(function(){
 		pagination:true,//是否显示分页工具栏
 		border:true,//是否显示边框
 		fit:true,//是否自适应父容器
-		fitColumns:true,//自动使列适应表格宽度以防止出现水平滚动
+		//fitColumns:true,//自动使列适应表格宽度以防止出现水平滚动
 		scrollbarSize:0,//滚动条的宽度
 		pageList:[10, 50, 100],//初始化页面大小选择列表
 		pageSize:10,
@@ -16,14 +16,16 @@ $(function(){
 		toolbar : '#tb',
 	    columns:[[
 			{field:'ck',checkbox:true},//复选框
-			{field:'xmlsh',title:"项目流水号",width:500},
-            {field:'xmmc',title:"项目名称",width:500},
-            {field:'xmxz',title:"项目性质",width:500},
-            {field:'fzr',title:"负责人",width:500},
-			{field:'xkfl',title:"学科分类",width:500},
-			{field:'kssj',title:"开始时间",width:500,formatter:formatDateTime},
-            {field:'jhwcsj',title:"计划完成时间",width:500,formatter:formatDateTime},
-            {field:'xmcyry',title:"项目参与人员",width:500}
+			{field:'xmlsh',title:"项目流水号",width:250,align:'center'},
+            {field:'xmmc',title:"项目名称",width:500,align:'center'},
+            {field:'xmxz',title:"项目性质",width:80,align:'center',formatter:formatXmxz},
+            {field:'fzr',title:"负责人",width:50,align:'center'},
+			{field:'xkfl',title:"学科分类",width:100,align:'center'},
+			{field:'kssj',title:"开始时间",width:200,align:'center',formatter:formatDateTime},
+            {field:'jhwcsj',title:"计划完成时间",width:200,align:'center',formatter:formatDateTime},
+            {field:'xmcyry',title:"项目参与人员",width:200,align:'center'},
+            {field:'cjsj',title:"创建时间",width:200,align
+                    :'center',formatter:formatDateTime}
 	    ]],
 	    onLoadSuccess:function(data){
 	    	console.log(data);
@@ -35,13 +37,15 @@ $(function(){
  * 获得参数
  */
 function getParms() {
-	var userName = $("#userName").textbox("getValue").trim();
-    var sfzhm = $("#sfzhm").textbox("getValue").trim();
-    var jslb = $("#jslb").textbox("getValue").trim();
+	var xmmc = $("#xmmc").textbox("getValue").trim();
+    var xmxz = $("#xmxz").textbox("getValue").trim();
+    var starDate = $("#starDate").textbox("getValue").trim();
+    var endDate = $("#endDate").textbox("getValue").trim();
 	var paramDate = {
-		userName:userName,
-        sfzhm:sfzhm,
-        jslb:jslb
+        xmmc:xmmc,
+        xmxz:xmxz,
+        starDate:starDate,
+        endDate:endDate
 	};
 	return paramDate;
 }
@@ -59,9 +63,9 @@ function getParmsadd() {
         xmxz:xmxz,
         xmcyry:xmcyry,
         fzr:fzr,
-        //kssj:kssj,
-        xkfl:xkfl
-        //jhwcsj:jhwcsj
+        kssj:kssj,
+        xkfl:xkfl,
+        jhwcsj:jhwcsj
     };
     return params;
 }
@@ -232,7 +236,7 @@ addSave = function () {
 		data:getParmsadd(),
 		success:function (data) {
 			console.log(data);
-			$("#wid").window('close');
+			$("#wid1").window('close');
 			$("#tab").datagrid('reload');
 			$.messager.show({
 				title:'提示消息',
@@ -280,13 +284,20 @@ $.extend($.fn.validatebox.defaults.rules, {
     }
 });
 
-function formatUserType(value,row,index){
+function formatXmxz(value,row,index){
     if (value == undefined) {
         return "";
     }
     if (value == 1){
-        return "超级管理员";
-    }else{
-        return "普通用户";
+        return "国家级";
+    }
+    if(value == 2){
+        return "省级";
+    }
+    if(value == 3){
+        return "省级以下";
+    }
+    else{
+        return "其他";
     }
 }

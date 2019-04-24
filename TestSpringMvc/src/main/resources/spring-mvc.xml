@@ -19,10 +19,6 @@
     <!-- 在SpringMVC3.0之后推荐使用 -->
     <mvc:default-servlet-handler/>
 
-    <mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
-    <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
-    <bean class="com.java.config.SwaggerConfig" />
-
     <!-- 在SpringMVC3.0之前推荐使用 -->
     <!--<mvc:resources location="/resources/**" mapping="/resources"/>-->
 

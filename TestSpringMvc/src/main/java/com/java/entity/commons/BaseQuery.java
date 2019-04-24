@@ -39,6 +39,12 @@ public class BaseQuery extends Pagenation {
      */
     private String fzr;
 
+    private String xmxz;
+
+    private String xkfl;
+
+    private String xmcyry;
+
     public String getStarDate() {
         return starDate;
     }
@@ -101,5 +107,29 @@ public class BaseQuery extends Pagenation {
 
     public void setFzr(String fzr) {
         this.fzr = fzr;
+    }
+
+    public String getXmxz() {
+        return xmxz;
+    }
+
+    public void setXmxz(String xmxz) {
+        this.xmxz = xmxz;
+    }
+
+    public String getXkfl() {
+        return xkfl;
+    }
+
+    public void setXkfl(String xkfl) {
+        this.xkfl = xkfl;
+    }
+
+    public String getXmcyry() {
+        return xmcyry;
+    }
+
+    public void setXmcyry(String xmcyry) {
+        this.xmcyry = xmcyry;
     }
 }
