@@ -1,7 +1,9 @@
 package com.java.controller;
 
 import com.java.entity.OrganiseUnit;
+import com.java.entity.commons.BaseMessage;
 import com.java.entity.commons.BaseQuery;
+import com.java.entity.commons.BaseResult;
 import com.java.service.OrganiseUnitService;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
@@ -33,11 +35,11 @@ public class OrganiseUnitController {
      */
     @RequestMapping(value = "/getInfo",method = RequestMethod.POST)
     @ResponseBody
-    public BaseQuery<OrganiseUnit> getInfo(OrganiseUnit organiseUnit){
+    public BaseResult<OrganiseUnit> getInfo(OrganiseUnit organiseUnit){
         /*if("--请选择--".equals(organiseUnit.getJslb())) {
             user.setJslb("");
         }*/
-        BaseQuery<OrganiseUnit> result = new BaseQuery<OrganiseUnit>();
+        BaseResult<OrganiseUnit> result = new BaseResult<OrganiseUnit>();
         List<OrganiseUnit> list = organiseUnitService.getInfo(organiseUnit);
         int total = list.size();
         result.setRows(list);
