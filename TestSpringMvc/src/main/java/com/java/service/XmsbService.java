@@ -36,6 +36,7 @@ public class XmsbService {
        String cjsj = simpleDate.format(new Date());
        xmsbPo.setCjsj(cjsj);
        xmsbPo.setXmlsh(uuid);
+       xmsbPo.setXmzt("1");
        xmsbDao.insertSelective(xmsbPo);
     }
 

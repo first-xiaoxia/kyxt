@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/xmsb")
@@ -65,14 +62,14 @@ public class XmsbController {
             xmsbService.insertSelective(xmsbPo);
             message.setMessage("项目申报成功");
         }catch (Exception e){
-            logger.error("新增项目申报失败");
+            logger.error("新增项目申报失败",e);
             message.setMessage("新增项目申报失败");
         }
         return message;
     }
 
 
-    @RequestMapping(value = "/update",method = RequestMethod.GET)
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     public BaseMessage update(XmsbPo xmsbPo){
         BaseMessage message = new BaseMessage();
         try {
@@ -83,7 +80,7 @@ public class XmsbController {
             xmsbService.updateByPrimaryKeySelective(xmsbPo);
             message.setMessage("项目申报修改成功");
         }catch (Exception e){
-            logger.error("删除项目申报失败");
+            logger.error("项目申报修改失敗",e);
             message.setMessage("该项目修改失败");
         }
         return message;
@@ -99,6 +96,9 @@ public class XmsbController {
             }
             if ("0".equals(query.getXmxz())) {
                 query.setXmxz("");
+            }
+            if ("0".equals(query.getXmzt())) {
+                query.setXmzt("");
             }
             result = xmsbService.getKymxPageInfo(query);
         }catch (Exception e){

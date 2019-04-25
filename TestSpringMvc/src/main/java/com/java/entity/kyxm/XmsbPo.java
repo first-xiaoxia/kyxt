@@ -14,6 +14,8 @@ public class XmsbPo implements Serializable {
     private String jhwcsj;
     private String xmcyry;
     private String cjsj;
+    private String xmzt;
+    private String bz;
 
     public String getXmlsh() {
         return xmlsh;
@@ -85,5 +87,21 @@ public class XmsbPo implements Serializable {
 
     public void setCjsj(String cjsj) {
         this.cjsj = cjsj;
+    }
+
+    public String getXmzt() {
+        return xmzt;
+    }
+
+    public void setXmzt(String xmzt) {
+        this.xmzt = xmzt;
+    }
+
+    public String getBz() {
+        return bz;
+    }
+
+    public void setBz(String bz) {
+        this.bz = bz;
     }
 }

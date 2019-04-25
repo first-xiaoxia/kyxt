@@ -24,8 +24,9 @@ $(function(){
 			{field:'kssj',title:"开始时间",width:200,align:'center',formatter:formatDateTime},
             {field:'jhwcsj',title:"计划完成时间",width:200,align:'center',formatter:formatDateTime},
             {field:'xmcyry',title:"项目参与人员",width:200,align:'center'},
-            {field:'cjsj',title:"创建时间",width:200,align
-                    :'center',formatter:formatDateTime}
+            {field:'cjsj',title:"创建时间",width:200,align:'center',formatter:formatDateTime},
+            {field:'xmzt',title:"项目状态",width:60,align:'center',formatter:formatXmzt},
+            {field:'bz',title:"备注",width:200,align:'center'}
 	    ]],
 	    onLoadSuccess:function(data){
 	    	console.log(data);
@@ -39,11 +40,13 @@ $(function(){
 function getParms() {
 	var xmmc = $("#xmmc").textbox("getValue").trim();
     var xmxz = $("#xmxz").textbox("getValue").trim();
+    var xmzt = $("#xmzt").textbox("getValue").trim();
     var starDate = $("#starDate").textbox("getValue").trim();
     var endDate = $("#endDate").textbox("getValue").trim();
 	var paramDate = {
         xmmc:xmmc,
         xmxz:xmxz,
+        xmzt:xmzt,
         starDate:starDate,
         endDate:endDate
 	};
@@ -70,22 +73,24 @@ function getParmsadd() {
     return params;
 }
 
-function getParms2() {
-    var yhmc = $("#f2yhmc").textbox('getValue');
-    var yhxb = $("#f2yhxb").textbox('getValue');
-    var userName = $("#f2userName").textbox('getValue');
-    var password = $("#f2password").textbox('getValue');
-    var jslb = $("#f2jslb").textbox('getValue');
-    var sfzhm = $("#f2sfzhm").textbox('getValue');
-    var userType = $("#f2userType").textbox('getValue');
+function getParmsEdit() {
+    var xmlsh = $("#edit_xmlsh").textbox('getValue');
+    var xmmc = $("#edit_xmmc").textbox('getValue');
+    var xmxz = $("#edit_xmxz").textbox('getValue');
+    var xmcyry = $("#edit_xmcyry").textbox('getValue');
+    var fzr = $("#edit_fzr").textbox('getValue');
+    var kssj = $("#edit_kssj").textbox('getValue');
+    var xkfl = $("#edit_xkfl").textbox('getValue');
+    var jhwcsj = $("#edit_jhwcsj").textbox('getValue');
     var params = {
-        yhmc:yhmc,
-        userName:userName,
-        yhxb:yhxb,
-        jslb:jslb,
-        sfzhm:sfzhm,
-        password:password,
-        userType:userType
+        xmlsh:xmlsh,
+        xmmc:xmmc,
+        xmxz:xmxz,
+        xmcyry:xmcyry,
+        fzr:fzr,
+        kssj:kssj,
+        xkfl:xkfl,
+        jhwcsj:jhwcsj
     };
     return params;
 }
@@ -100,10 +105,13 @@ function doSearch() {
 /**
  * 重置
  */
-doClear = function () {
-    $("#userName").textbox("clear");
-    $("#sfzhm").textbox("clear");
-    $("#jslb").combobox().select("--请选择--");
+function doClear () {
+    console.log("重置")
+    $("#xmmc").textbox("clear");
+    $("#xmzt").textbox("clear");
+    $("#starDate").textbox("clear");
+    $("#endDate").textbox("clear");
+    $("#xmxz").combobox().select("--请选择--");
 }
 /**
  * 删除
@@ -112,10 +120,10 @@ doDelete = function () {
     var row1 = $("#tab").datagrid("getSelected");
     console.log(row1.id)
     $.ajax({
-        url:path+'/user/delUser',
+        url:path+'/xmsb/deleteByKey',
         method:'post',
         data:{
-            id:row1.id
+            id:row1.xmlsh
         },
         success:function (data) {
             console.log(data);
@@ -135,53 +143,33 @@ doDelete = function () {
  * 编辑
  */
 var rows = null;
-doedit = function () {
+function doedit () {
     var row = $("#tab").datagrid("getSelected");
     rows = row;
     if(row != null){
         $("#wid").window("open");
-        $("#fyhxb").combobox({
-            data:[{label:'男',type:"男"},{label:'女',type:"女"}],
+        $("#edit_xmxz").combobox({
+            data:[{label:'1',type:"国家级"},{label:'2',type:"省级"},{label:'3',type:"省级以下"},{label:'4',type:"其他"}],
             valueField:"label",
             textField:"type",
             editable:false,
             panelHeight:"auto",
             onLoadSuccess:function(data) {
-                console.log("111")
+                console.log(rows);
                 var array=$(this).combobox("getData");
-                $(this).combobox('select',array[0].label);
+                for(var i=0;i<array.length;i++){
+                    if(rows.xmxz == array[i].label){
+                        console.log(rows.xmxz);
+                        console.log(array[i].label);
+                        $(this).combobox('select',array[i].label);
+                        break;
+                    }
+                }
+
             }
 
         });
-
-        $("#fjslb").combobox({
-            data:[{label:'教师岗',type:"教师岗"},{label:'管理岗',type:"管理岗"}],
-            valueField:"label",
-            textField:"type",
-            editable:false,
-            panelHeight:"auto",
-            onLoadSuccess:function(data) {
-                console.log("222")
-                var array=$(this).combobox("getData");
-                $(this).combobox('select',array[0].label);
-
-            }
-        });
-
-        $("#fuserType").combobox({
-            data:[{label:'1',type:"超级管理员"},{label:'2',type:"普通用户"}],
-            valueField:"label",
-            textField:"type",
-            editable:false,
-            panelHeight:"auto",
-            onLoadSuccess:function(data) {
-                console.log("333")
-                var array=$(this).combobox("getData");
-                $(this).combobox('select',array[0].label);
-
-            }
-        });
-        $('#form1').form('load',row);
+        $('#kyxm_edit_form').form('load',row);
     }
     else{
         $.messager.show({
@@ -248,16 +236,16 @@ addSave = function () {
 	});
 };
 
-dosave1 = function () {
+editsave = function () {
 
-    console.log(getParms2());
+    console.log(getParmsEdit());
     $.ajax({
-        url:path+'/user/addUser',
+        url:path+'/xmsb/update',
         method:'post',
-        data:getParms2(),
+        data:getParmsEdit(),
         success:function (data) {
             console.log(data);
-            $("#wid1").window('close');
+            $("#wid").window('close');
             $("#tab").datagrid('reload');
             $.messager.show({
                 title:'提示消息',
@@ -299,5 +287,17 @@ function formatXmxz(value,row,index){
     }
     else{
         return "其他";
+    }
+}
+
+function formatXmzt(value,row,index){
+    if (value == undefined) {
+        return "";
+    }
+    if (value == 1){
+        return "已立项";
+    }
+    if(value == 2){
+        return "已终结";
     }
 }

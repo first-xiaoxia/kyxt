@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.mobile.js"></script>
 	<script type="text/javascript" src="/TestSpringMvc/scripts/common/common.js"></script>
 	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/TestSpringMvc/scripts/kyxm.js"></script>
 </head>
 <body>
 	<table id="tab" style="height: auto"></table>
@@ -25,7 +26,6 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="doDelete()">删除</a>
 		</div>
 		<div id="term" class="terms" >
-			<div>项目名称<input class="easyui-textbox" id="xmmc" style="width: 150px;height: 25px;"></div>
 			<div>项目性质<select id="xmxz" name = "xmxz"  class="easyui-combobox"  style="width: 155px">
 				<option value="0" >--请选择--</option>
 				<option  value="1">国家级</option>
@@ -34,49 +34,61 @@
 				<option value="4">其他</option>
 			</select>
 			</div>
+			<div>项目状态<select id="xmzt" name = "xmzt"  class="easyui-combobox"  style="width: 155px">
+				<option value="0" >--请选择--</option>
+				<option  value="1">立项</option>
+				<option value="2">终结</option>
+			</select>
+			</div>
 			<div>开始时间<input id="starDate" name = "starDate"  class="easyui-datetimebox" data-options="editable:false" style="width: 155px" /></div>
 			<div>结束时间<input id="endDate" name = "endDate"  class="easyui-datetimebox" data-options="editable:false" style="width: 155px" /></div>
-
+			<div>项目名称<input class="easyui-textbox" id="xmmc" style="width: 350px;height: 25px;"></div>
 		</div>
 	</div>
 	<div id="wid" class="easyui-window" data-options="title:'修改用户信息',collapsible:false,
 		maximizable:true,modal:true,closed:true,scrollbarSize:0" style="height:100%;width:100%;">
-		<form class="form" id="form1" style="text-align: center">
+		<form class="form" id="kyxm_edit_form" style="text-align: center">
 			<div style="width: 98%">
-				<span>编号  ：</span><input id="fid" name="id" class="easyui-textbox" disabled style="width: 240px" >
+				<span>項目編號  ：</span><input id="edit_xmlsh" name="xmlsh" class="easyui-textbox" disabled style="width: 240px" >
 
 			</div>
-			<div style="width: 98%">
-				<span>账号  ：</span><input id="fuserName" name="userName" class="easyui-textbox" disabled style="width: 240px" >
+            <div style="width: 98%">
+                <span>项目名称  ：</span><input id="edit_xmmc" name="xmmc" class="easyui-textbox"  style="width: 240px" >
 
-			</div>
-			<div style="width: 98%"><span>密码：</span><input id="fpassword" name = "password" class="easyui-textbox"  style="width: 240px">
+            </div>
+            <div style="width: 98%"><span>项目性质：</span><input id="edit_xmxz" name = "xmxz" class="easyui-combobox"  style="width: 240px">
 
-			</div>
-			<div style="width: 98%">
-				<span>姓名  ：</span><input id="fyhmc" name="yhmc" class="easyui-textbox"  style="width: 240px">
-			</div>
-			<div style="width: 98%">
-				<span>性别：</span>
-				</span><input id="fyhxb" name="yhxb" class="easyui-combobox"  style="width: 240px">
-			</div>
+            </div>
+            <div style="width: 98%">
+                <span>学科分类  ：</span><input id="edit_xkfl" name="xkfl" class="easyui-textbox"  style="width: 240px">
+            </div>
+            <div style="width: 98%">
+                <span>开始时间：</span>
+                </span><input id="edit_kssj" name="kssj" class="easyui-datetimebox" data-options="editable:false" style="width: 240px">
+            </div>
 
+            <div style="width: 98%">
+                <span>完成时间：</span>
+                <input id="edit_jhwcsj" name = "jhwcsj"  class="easyui-datetimebox" data-options="editable:false"  style="width: 240px"/>
+
+                </input>
+            </div>
+            <div style="width: 98%">
+                <span>项目责任人：</span><input id="edit_fzr" name = "fzr" class="easyui-textbox"  style="width: 240px">
+
+            </div>
+            <div style="width: 98%">
+                <span>项目参与人：</span><input id="edit_xmcyry" name = "xmcyry" class="easyui-textbox"  style="width: 240px">
+
+            </div>
 			<div style="width: 98%">
-				<span>岗位：</span>
-				<input id="fjslb" name = "jslb"  class="easyui-combobox"  style="width: 240px"/>
+				<span>完成时间：</span>
+				<input id="edit_cjsj" name = "cjsj"  class="easyui-datetimebox" data-options="editable:false" disabled  style="width: 240px"/>
 
 				</input>
 			</div>
-			<div style="width: 98%">
-				<span>类型：</span><input id="fuserType" name = "userType" class="easyui-combobox"  style="width: 240px">
-
-			</div>
-			<div style="width: 98%">
-				<span>证件号：</span><input id="fsfzhm" name = "sfzhm" class="easyui-textbox"  style="width: 240px">
-
-			</div>
 			<div class="btnss">
-				<a href="#" class="easyui-linkbutton"  onclick="dosave()">保存</a>
+				<a href="#" class="easyui-linkbutton"  onclick="editsave()">保存</a>
 				<a href="#" class="easyui-linkbutton"  onclick="doback()">返回</a>
 			</div>
 
@@ -125,5 +137,5 @@
 	
 	
 </body>
-<script type="text/javascript" src="/TestSpringMvc/scripts/kyxm.js"></script>
+
 </html>

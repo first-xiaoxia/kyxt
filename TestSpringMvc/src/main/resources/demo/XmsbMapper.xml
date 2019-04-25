@@ -3,7 +3,7 @@
 <mapper namespace="com.java.dao.XmsbDao" >
 
   <sql id="Base_Column_List" >
-    xmlsh, xmmc,xmxz,fzr,xkfl,kssj, jhwcsj, xmcyry
+    xmlsh, xmmc,xmxz,fzr,xkfl,kssj, jhwcsj, xmcyry,cjsj,xmzt,bz
   </sql>
 
   <select id="selectXmsbByPrimaryKey" resultType="com.java.entity.kyxm.XmsbPo" parameterType="java.lang.String" >
@@ -26,14 +26,17 @@
     <if test="fzr != null and fzr != ''">
       AND fzr LIKE concat('%',#{fzr},'%')
     </if>
-    <if test="xkfl != null" >
+    <if test="xkfl != null and xkfl != ''" >
       AND xkfl = #{xkfl}
     </if>
+    <if test="xmzt != null and xmzt != ''" >
+      AND xmzt = #{xmzt}
+    </if>
     <if test="starDate != null and starDate != ''" >
-      AND kssj &gt;= #{starDate}
+      AND cjsj &gt;= #{starDate}
     </if>
     <if test="endDate != null and endDate != ''" >
-      AND kssj &lt;= #{endDate}
+      AND cjsj &lt;= #{endDate}
     </if>
     <if test="xmcyry != null and xmcyry != ''">
       AND xmcyry LIKE concat('%',#{xmcyry},'%')
@@ -54,14 +57,17 @@
     <if test="fzr != null and fzr != ''">
       AND fzr LIKE concat('%',#{fzr},'%')
     </if>
-    <if test="xkfl != null" >
+    <if test="xkfl != null and xkfl != ''" >
       AND xkfl = #{xkfl}
     </if>
+    <if test="xmzt != null and xmzt != ''" >
+      AND xmzt = #{xmzt}
+    </if>
     <if test="starDate != null and starDate != ''" >
-      AND kssj &gt;= #{starDate}
+      AND cjsj &gt;= #{starDate}
     </if>
     <if test="endDate != null and endDate != ''" >
-      AND kssj &lt;= #{endDate}
+      AND cjsj &lt;= #{endDate}
     </if>
     <if test="xmcyry != null and xmcyry != ''">
       AND xmcyry LIKE concat('%',#{xmcyry},'%')
@@ -99,6 +105,12 @@
       <if test="xmcyry != null" >
         xmcyry,
       </if>
+      <if test="cjsj != null" >
+        cjsj,
+      </if>
+      <if test="xmzt != null" >
+        xmzt,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="xmlsh != null" >
@@ -124,6 +136,12 @@
       </if>
       <if test="xmcyry != null" >
         #{xmcyry},
+      </if>
+      <if test="cjsj != null" >
+        #{cjsj},
+      </if>
+      <if test="xmzt != null" >
+        #{xmzt},
       </if>
     </trim>
   </insert>
@@ -152,7 +170,7 @@
         xmcyry = #{xmcyry},
       </if>
     </set>
-    where xmlsh = #{ixmlshd}
+    where xmlsh = #{xmlsh}
   </update>
 
 </mapper>
