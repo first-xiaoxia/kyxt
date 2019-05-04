@@ -3,7 +3,7 @@
 <mapper namespace="com.java.dao.XmsbDao" >
 
   <sql id="Base_Column_List" >
-    xmlsh, xmmc,xmxz,fzr,xkfl,kssj, jhwcsj, xmcyry,cjsj,xmzt,bz
+    xmlsh, xmmc,xmxz,fzr,xkfl,kssj, jhwcsj, xmcyry,cjsj,xmzt,bz,zzsj,spr,shsj,khr,khsj
   </sql>
 
   <select id="selectXmsbByPrimaryKey" resultType="com.java.entity.kyxm.XmsbPo" parameterType="java.lang.String" >
@@ -169,8 +169,56 @@
       <if test="xmcyry != null" >
         xmcyry = #{xmcyry},
       </if>
+      <if test="xmzt != null and xmzt!=''" >
+        xmzt = #{xmzt},
+      </if>
+      <if test="bz != null and bz!=''" >
+        bz = #{bz},
+      </if>
+      <if test="zzsj != null and zzsj!=''" >
+        zzsj = #{zzsj},
+      </if>
+      <if test="shsj != null and shsj!=''" >
+        shsj = #{shsj},
+      </if>
+      <if test="spr != null and spr!=''" >
+        spr = #{spr},
+      </if>
+     <!-- <if test="shsj!=null and shsj!=''">
+        shsj = #{shsj},
+      </if>-->
     </set>
     where xmlsh = #{xmlsh}
   </update>
+
+  <select id="getList" resultType="com.java.entity.kyxm.XmsbPo">
+    select <include refid="Base_Column_List"/>
+    from t_kyxm
+    where 1=1
+    <if test="xmmc != null and xmmc != ''">
+      AND xmmc LIKE concat('%',#{xmmc},'%')
+    </if>
+    <if test="xmxz != null and xmxz != ''" >
+      AND xmxz = #{xmxz}
+    </if>
+    <if test="fzr != null and fzr != ''">
+      AND fzr LIKE concat('%',#{fzr},'%')
+    </if>
+    <if test="xkfl != null and xkfl != ''" >
+      AND xkfl = #{xkfl}
+    </if>
+    <if test="xmzt != null and xmzt != ''" >
+      AND xmzt = #{xmzt}
+    </if>
+    <if test="starDate != null and starDate != ''" >
+      AND cjsj &gt;= #{starDate}
+    </if>
+    <if test="endDate != null and endDate != ''" >
+      AND cjsj &lt;= #{endDate}
+    </if>
+    <if test="xmcyry != null and xmcyry != ''">
+      AND xmcyry LIKE concat('%',#{xmcyry},'%')
+    </if>
+  </select>
 
 </mapper>

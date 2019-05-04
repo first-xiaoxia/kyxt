@@ -47,6 +47,22 @@ public class BaseQuery extends Pagenation {
 
     private String xmzt;
 
+    private String cjr;
+
+    private String cjsj;
+
+    private String shzt;
+
+    private String cgmc;
+
+    private String wjmc;
+
+    private String cglsh;
+
+    private String bzmc;
+
+    private String xmlsh;
+
     public String getStarDate() {
         return starDate;
     }
@@ -141,5 +157,69 @@ public class BaseQuery extends Pagenation {
 
     public void setXmzt(String xmzt) {
         this.xmzt = xmzt;
+    }
+
+    public String getCjr() {
+        return cjr;
+    }
+
+    public void setCjr(String cjr) {
+        this.cjr = cjr;
+    }
+
+    public String getCjsj() {
+        return cjsj;
+    }
+
+    public void setCjsj(String cjsj) {
+        this.cjsj = cjsj;
+    }
+
+    public String getShzt() {
+        return shzt;
+    }
+
+    public void setShzt(String shzt) {
+        this.shzt = shzt;
+    }
+
+    public String getCgmc() {
+        return cgmc;
+    }
+
+    public void setCgmc(String cgmc) {
+        this.cgmc = cgmc;
+    }
+
+    public String getWjmc() {
+        return wjmc;
+    }
+
+    public void setWjmc(String wjmc) {
+        this.wjmc = wjmc;
+    }
+
+    public String getCglsh() {
+        return cglsh;
+    }
+
+    public void setCglsh(String cglsh) {
+        this.cglsh = cglsh;
+    }
+
+    public String getBzmc() {
+        return bzmc;
+    }
+
+    public void setBzmc(String bzmc) {
+        this.bzmc = bzmc;
+    }
+
+    public String getXmlsh() {
+        return xmlsh;
+    }
+
+    public void setXmlsh(String xmlsh) {
+        this.xmlsh = xmlsh;
     }
 }

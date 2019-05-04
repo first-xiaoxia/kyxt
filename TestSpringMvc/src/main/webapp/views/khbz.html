@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/common.css"/>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/demo.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/user.css">
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/common/common.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/TestSpringMvc/scripts/khbz.js"></script>
+</head>
+<body>
+	<table id="tab" style="height: auto"></table>
+	<div id="tb">
+		<div class="btns" id="btn1">
+		<a href="#" id="sear" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="doedit()">修改</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="doadd()">新增</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="doClear()">重置</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="doDelete()">删除</a>
+		</div>
+		<div id="term" class="terms" >
+			<div>标准名称<input class="easyui-textbox" id="bzmc" style="width: 155px;height: 25px;"></div>
+			<div>申请人<input class="easyui-textbox" id="cjr" style="width: 155px;height: 25px;"></div>
+			<div>开始时间<input id="starDate" name = "starDate"  class="easyui-datetimebox" data-options="editable:false" style="width: 155px" /></div>
+			<div>结束时间<input id="endDate" name = "endDate"  class="easyui-datetimebox" data-options="editable:false" style="width: 155px" /></div>
+
+		</div>
+	</div>
+	<div id="wid" class="easyui-dialog" closed="true" data-options="buttons:'#khbz_eidt_btns'" modal="true" title="标准编辑" style="height:300px;width:400px;">
+		<form class="form" id="kyxm_edit_form" style="text-align: center">
+			<div style="width: 95%">
+				<span>标准编号：</span><input id="edit_bzlsh" name="bzlsh" class="easyui-textbox" disabled style="width: 240px" >
+
+			</div>
+			<div style="width: 95%">
+				<span>标准名称：</span><input id="edit_bzmc" name="bzmc" class="easyui-textbox" disabled style="width: 240px" >
+
+			</div>
+            <div style="width: 95%">
+                <span>标准分值  ：</span><input id="edit_fz" name="fz" class="easyui-textbox"  style="width: 240px" >
+
+            </div>
+            <div style="width: 95%"><span>标准单位：</span><input id="edit_dw" name = "dw" class="easyui-textbox"  style="width: 240px">
+
+            </div>
+		</form>
+	</div>
+	<div id="khbz_eidt_btns" style="text-align: center">
+		<a href="#" class="easyui-linkbutton" style="width: 100px"  onclick="editsave()">保存</a>
+		<a href="#" class="easyui-linkbutton" style="width: 100px" onclick="doback()">返回</a>
+	</div>
+	<div id="wid1" class="easyui-dialog"
+		 style="width:400px; height:300px" closed="true" data-options="buttons:'#khbz_add_btns'" modal="true" title="标准新增" >
+		<form class="form" id="kyjf_add_form" style="text-align: center" >
+			<div style="width: 95%">
+				<span>标准名称：</span><input id="add_bzmc" name="bzmc" class="easyui-textbox"  style="width: 240px" >
+
+			</div>
+			<div style="width: 95%">
+				<span>标准分值  ：</span><input id="add_fz" name="fz" class="easyui-textbox"  style="width: 240px" >
+
+			</div>
+			<div style="width: 95%"><span>标准单位：</span><input id="add_dw" name = "dw" class="easyui-textbox"  style="width: 240px">
+
+			</div>
+		</form>
+	</div>
+	<div style="text-align: center" id="khbz_add_btns">
+		<a href="#" class="easyui-linkbutton" style="width: 100px"  onclick="addSave()">保存</a>
+		<a href="#" class="easyui-linkbutton" style="width: 100px"   onclick="doback()">返回</a>
+	</div>
+</body>
+
+</html>

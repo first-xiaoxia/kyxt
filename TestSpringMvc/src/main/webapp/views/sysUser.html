@@ -35,8 +35,8 @@
 			</div>
 		</div>
 	</div>
-	<div id="wid" class="easyui-window" data-options="title:'修改用户信息',collapsible:false,
-		maximizable:true,modal:true,closed:true,scrollbarSize:0" style="height:100%;width:100%;">
+	<div id="wid" class="easyui-dialog" data-options="title:'修改用户信息',collapsible:false,
+		maximizable:true,closed:true,buttons:'#user_eidt'" style="height:100%;width:100%;">
 		<form class="form" id="form1" style="text-align: center">
 			<div style="width: 98%">
 				<span>编号  ：</span><input id="fid" name="id" class="easyui-textbox" disabled style="width: 240px" >
@@ -71,15 +71,14 @@
 				<span>证件号：</span><input id="fsfzhm" name = "sfzhm" class="easyui-textbox"  style="width: 240px">
 
 			</div>
-			<div class="btnss">
-				<a href="#" class="easyui-linkbutton"  onclick="dosave()">保存</a>
-				<a href="#" class="easyui-linkbutton"  onclick="doback()">返回</a>
-			</div>
-
 		</form>
 	</div>
+	<div id="user_eidt" style="text-align: center">
+		<a href="#" class="easyui-linkbutton" style="width: 100px"  onclick="dosave()">保存</a>
+		<a href="#" class="easyui-linkbutton" style="width: 100px" onclick="doback()">返回</a>
+	</div>
 	<div id="wid1" class="easyui-dialog"
-		 style="width:100%; height:100%" closed="true" modal="true" title="新增用户" modal="true">
+		 style="width:100%; height:100%" data-options="buttons:'#user_add'" closed="true" modal="true" title="新增用户" modal="true">
 		<form class="form" id="form2" style="text-align: center" >
 			<div style="width: 98%">
 				<span>账号  ：</span><input id="f2userName" name="userName" class="easyui-textbox" style="width: 240px" >
@@ -110,15 +109,13 @@
 				<span>证件号：</span><input id="f2sfzhm" name = "sfzhm" class="easyui-textbox"  style="width: 240px">
 
 			</div>
-
-			<div class="btnss">
-				<a href="#" class="easyui-linkbutton"   onclick="dosave1()">保存</a>
-				<a href="#" class="easyui-linkbutton"   onclick="doback()">返回</a>
-			</div>
-
 		</form>
 	</div>
-	
+
+	<div id="user_add" style="text-align: center">
+		<a href="#" class="easyui-linkbutton" style="width: 100px"  onclick="dosave1()">保存</a>
+		<a href="#" class="easyui-linkbutton" style="width: 100px"  onclick="doback()">返回</a>
+	</div>
 	
 </body>
 

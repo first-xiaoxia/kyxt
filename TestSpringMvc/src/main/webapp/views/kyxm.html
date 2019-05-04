@@ -24,6 +24,7 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="doadd()">新增</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="doClear()">重置</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="doDelete()">删除</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="doAddBZ()">终止</a>
 		</div>
 		<div id="term" class="terms" >
 			<div>项目性质<select id="xmxz" name = "xmxz"  class="easyui-combobox"  style="width: 155px">
@@ -37,7 +38,9 @@
 			<div>项目状态<select id="xmzt" name = "xmzt"  class="easyui-combobox"  style="width: 155px">
 				<option value="0" >--请选择--</option>
 				<option  value="1">立项</option>
-				<option value="2">终结</option>
+				<option value="2">终止</option>
+				<option  value="3">审核通过</option>
+				<option value="4">审核不通过</option>
 			</select>
 			</div>
 			<div>开始时间<input id="starDate" name = "starDate"  class="easyui-datetimebox" data-options="editable:false" style="width: 155px" /></div>
@@ -45,8 +48,7 @@
 			<div>项目名称<input class="easyui-textbox" id="xmmc" style="width: 350px;height: 25px;"></div>
 		</div>
 	</div>
-	<div id="wid" class="easyui-window" data-options="title:'修改用户信息',collapsible:false,
-		maximizable:true,modal:true,closed:true,scrollbarSize:0" style="height:100%;width:100%;">
+	<div id="wid" class="easyui-dialog" closed="true" data-options="buttons:'#kyxm_eidt_btns'" modal="true" title="项目编辑" style="height:100%;width:100%;">
 		<form class="form" id="kyxm_edit_form" style="text-align: center">
 			<div style="width: 98%">
 				<span>項目編號  ：</span><input id="edit_xmlsh" name="xmlsh" class="easyui-textbox" disabled style="width: 240px" >
@@ -74,7 +76,7 @@
                 </input>
             </div>
             <div style="width: 98%">
-                <span>项目责任人：</span><input id="edit_fzr" name = "fzr" class="easyui-textbox"  style="width: 240px">
+                <span>项目责任人：</span><input id="edit_fzr" name = "fzr" class="easyui-textbox" disabled  style="width: 240px">
 
             </div>
             <div style="width: 98%">
@@ -87,15 +89,14 @@
 
 				</input>
 			</div>
-			<div class="btnss">
-				<a href="#" class="easyui-linkbutton"  onclick="editsave()">保存</a>
-				<a href="#" class="easyui-linkbutton"  onclick="doback()">返回</a>
-			</div>
-
 		</form>
 	</div>
+	<div id="kyxm_eidt_btns" style="text-align: center">
+		<a href="#" class="easyui-linkbutton" style="width: 100px"  onclick="editsave()">保存</a>
+		<a href="#" class="easyui-linkbutton" style="width: 100px" onclick="doback()">返回</a>
+	</div>
 	<div id="wid1" class="easyui-dialog"
-		 style="width:100%; height:100%" closed="true" modal="true" title="项目申报" modal="true">
+		 style="width:100%; height:100%" closed="true" data-options="buttons:'#kyxm_add_btns'" modal="true" title="项目申报" >
 		<form class="form" id="kyxm_add_form" style="text-align: center" >
 			<div style="width: 98%">
 				<span>项目名称  ：</span><input id="add_xmmc" name="xmmc" class="easyui-textbox" style="width: 240px" >
@@ -119,23 +120,41 @@
 				</input>
 			</div>
 			<div style="width: 98%">
-				<span>项目责任人：</span><input id="add_fzr" name = "fzr" class="easyui-textbox"  style="width: 240px">
-
-			</div>
-			<div style="width: 98%">
 				<span>项目参与人：</span><input id="add_xmcyry" name = "xmcyry" class="easyui-textbox"  style="width: 240px">
 
 			</div>
 
-			<div class="btnss">
-				<a href="#" class="easyui-linkbutton"   onclick="addSave()">保存</a>
-				<a href="#" class="easyui-linkbutton"   onclick="doback()">返回</a>
-			</div>
-
 		</form>
 	</div>
-	
-	
+	<div style="text-align: center" id="kyxm_add_btns">
+		<a href="#" class="easyui-linkbutton" style="width: 100px"  onclick="addSave()">保存</a>
+		<a href="#" class="easyui-linkbutton" style="width: 100px"   onclick="doback()">返回</a>
+	</div>
+
+ 	<div id = "bz_dialog" class="easyui-dialog" closed="true" data-options="buttons:'#bb'"  title="终结原因" modal="true" style="height: 300px;width: 500px">
+		<input class="easyui-textbox" id="bz"  data-options="multiline:true,prompt:'请输入你的终止原因'"  style="width:100%;height:100%">
+	</div>
+	<div id="bb" style="text-align: center">
+		<a href="#" class="easyui-linkbutton" style="width: 80px"  onclick="bzSave()">保存</a>
+		<a href="#" class="easyui-linkbutton" style="width: 80px"   onclick="doback()">返回</a>
+	</div>
+
+	<div id="widcg" class="easyui-dialog" closed="true" data-options="buttons:'#btn_cg'" modal="true" title="项目编辑" style="height:100%;width:100%;">
+		<form class="form" id="xmcggl_add_form" style="text-align: center">
+			<div style="width: 98%">
+				<span>成果名称  ：</span><input id="xmcggl" name="xmcggl" class="easyui-combobox"  style="width: 240px" >
+				<a href="#" class="easyui-linkbutton" style="width: 80px"  onclick="addcg()">添加</a>
+
+			</div>
+			<div style="width: 98%">
+				<h1>科研成果列表</h1>
+			</div>
+		</form>
+		<table style="width: 98%" id="tab1" style="height: auto"></table>
+	</div>
+	<div id="btn_cg" style="text-align: center">
+		<a href="#" class="easyui-linkbutton" style="width: 80px"   onclick="doback()">返回</a>
+	</div>
 </body>
 
 </html>

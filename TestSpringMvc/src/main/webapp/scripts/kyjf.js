@@ -1,7 +1,6 @@
-var nowxmlsh = "";
 $(function(){
 	$('#tab').datagrid({
-  		url:path+'/xmsb/getKymxPageInfo',
+  		url:path+'/kyjf/getKyjfPageInfo',
   		rownumbers:true,//是否显示行号
    	 	striped:true,//是否显示斑马线效果
    	 	singleSelect:true,//只允许选择一行
@@ -18,24 +17,16 @@ $(function(){
 	    columns:[[
 			{field:'ck',checkbox:true},//复选框
             {field:'xmmc',title:"项目名称",width:300,align:'center'},
-            {field:'xmxz',title:"项目性质",width:80,align:'center',formatter:formatXmxz},
-            {field:'fzr',title:"负责人",width:50,align:'center'},
-			{field:'xkfl',title:"学科分类",width:100,align:'center'},
-			{field:'kssj',title:"开始时间",width:200,align:'center',formatter:formatDateTime},
-            {field:'jhwcsj',title:"计划完成时间",width:200,align:'center',formatter:formatDateTime},
-            {field:'xmcyry',title:"项目参与人员",width:200,align:'center'},
-            {field:'cjsj',title:"创建时间",width:200,align:'center',formatter:formatDateTime},
-            {field:'xmzt',title:"项目状态",width:60,align:'center',formatter:formatXmzt},
-            {field:'zzsj',title:"终止时间",width:200,align:'center',formatter:formatDateTime},
-            {field:'bz',title:"备注",width:200,align:'center'},
-            {field:'xmlsh',title:'操作',width:200,align:'center',
-                formatter:function(value,rec,index){
-                    console.log(index+","+rec+","+value);
-                    nowxmlsh = value;
-                    var d = '<a href="#" mce_href="#" onclick="addkycg(\''+ value +'\')">科研成果</a> ';
-                    return d;
-                }
-            }
+            {field:'jfhj',title:"经费额度",width:80,align:'center'},
+            {field:'fyzl',title:"费用类型",width:80,align:'center'},
+			{field:'fyyt',title:"费用用途",width:300,align:'center'},
+			{field:'cjr',title:"申请人",width:200,align:'center'},
+            {field:'cjsj',title:"申请时间",width:200,align:'center',formatter:formatDateTime},
+            {field:'shzt',title:"申请状态",width:200,align:'center',formatter:formatjfzt},
+            {field:'spr',title:"审批人",width:200,align:'center'},
+            {field:'shsj',title:"审批时间",width:200,align:'center',formatter:formatDateTime},
+            {field:'shly',title:"审批理由",width:200,align:'center'},
+            {field:'jflsh',title:"经费流水号",width:250,align:'center'}
 	    ]],
 	    onLoadSuccess:function(data){
 	    	console.log(data);
@@ -43,94 +34,17 @@ $(function(){
 	});
 });
 
-
-addkycg = function (value) {
-    $("#widcg").window('open');
-    $("#xmcggl_add_form").form('reset');
-    $("#xmcggl").combobox({
-        url:path+"/kycg/getCgListByCjr",
-        queryParams: { xmlsh:value },
-        valueField:"cglsh",
-        textField:"cgmc",
-        editable:false,
-        panelHeight:"auto",
-        onLoadSuccess:function(data) {
-            var array=$(this).combobox("getData");
-            $(this).combobox('select',array[0].cglsh);
-        }
-
-    });
-    $('#tab1').datagrid({
-        url:path+'/xmcggl/getKyjfPageInfo',
-        rownumbers:true,//是否显示行号
-        striped:true,//是否显示斑马线效果
-        singleSelect:true,//只允许选择一行
-        pagination:true,//是否显示分页工具栏
-        border:true,//是否显示边框
-        fit:true,//是否自适应父容器
-        fitColumns:true,//自动使列适应表格宽度以防止出现水平滚动
-        scrollbarSize:0,//滚动条的宽度
-        pageList:[10, 50, 100],//初始化页面大小选择列表
-        pageSize:10,
-        showFooter:true,//是否显示行脚
-        loadMsg :"加载数据中...",//加载数据时显示的提示消息
-        queryParams: { xmlsh:value }, //往后台传参数用的。
-        //toolbar : '#tb',
-        columns:[[
-            {field:'cgmc',title:"成果名称",width:100,align:'center'},
-            {field:'cgjb',title:"成果级别",width:50,align:'center'},
-            {field:'cgfl',title:"成果分类",width:50,align:'center'},
-            {field:'bh',title:'操作',width:100,align:'center',
-                formatter:function(value,rec,index){
-                    console.log(index+","+rec+","+value);
-                    var d = '<a href="#" mce_href="#" onclick="delcglb(\''+ value +'\')">删除</a> ';
-                    return d;
-                }
-            }
-        ]],
-        onLoadSuccess:function(data){
-            console.log(data);
-        }
-    });
-};
-
-function addcg() {
-    var xmcggl = $("#xmcggl").textbox("getValue").trim();
-    console.log(xmcggl);
-    console.log(nowxmlsh);
-    $.ajax({
-        url:path+'/xmcggl/add',
-        method:'get',
-        data:{
-            xmlsh:nowxmlsh,
-            cglsh:xmcggl
-        },
-        success:function (data) {
-            console.log(data);
-            $("#tab1").datagrid('reload');
-            $.messager.show({
-                title:'提示消息',
-                msg:"删除数据成功",
-                timeout:5000,
-                showType:'slide'
-            });
-        }
-    });
-}
-
 /**
  * 获得参数
  */
 function getParms() {
 	var xmmc = $("#xmmc").textbox("getValue").trim();
-    var xmxz = $("#xmxz").textbox("getValue").trim();
-    var xmzt = $("#xmzt").textbox("getValue").trim();
+    var cjr = $("#cjr").textbox("getValue").trim();
     var starDate = $("#starDate").textbox("getValue").trim();
     var endDate = $("#endDate").textbox("getValue").trim();
 	var paramDate = {
         xmmc:xmmc,
-        xmxz:xmxz,
-        xmzt:xmzt,
+        cjr:cjr,
         starDate:starDate,
         endDate:endDate
 	};
@@ -139,18 +53,14 @@ function getParms() {
 
 function getParmsadd() {
     var xmmc = $("#add_xmmc").textbox('getValue');
-    var xmxz = $("#add_xmxz").textbox('getValue');
-    var xmcyry = $("#add_xmcyry").textbox('getValue');
-    var kssj = $("#add_kssj").textbox('getValue');
-    var xkfl = $("#add_xkfl").textbox('getValue');
-    var jhwcsj = $("#add_jhwcsj").textbox('getValue');
+    var jfhj = $("#add_jfhj").textbox('getValue');
+    var fyzl = $("#add_fyzl").textbox('getValue');
+    var fyyt = $("#add_fyyt").textbox('getValue')
     var params = {
         xmmc:xmmc,
-        xmxz:xmxz,
-        xmcyry:xmcyry,
-        kssj:kssj,
-        xkfl:xkfl,
-        jhwcsj:jhwcsj
+        jfhj:jfhj,
+        fyzl:fyzl,
+        fyyt:fyyt
     };
     return params;
 }
@@ -190,57 +100,45 @@ function doSearch() {
 function doClear () {
     console.log("重置")
     $("#xmmc").textbox("clear");
-    $("#xmzt").textbox("clear");
+    $("#cjr").textbox("clear");
     $("#starDate").textbox("clear");
     $("#endDate").textbox("clear");
-    $("#xmxz").combobox().select("--请选择--");
 }
 /**
  * 删除
  */
 doDelete = function () {
     var row1 = $("#tab").datagrid("getSelected");
-    console.log(row1.id)
-    $.ajax({
-        url:path+'/xmsb/deleteByKey',
-        method:'get',
-        data:{
-            xmlsh:row1.xmlsh
-        },
-        success:function (data) {
-            console.log(data);
-            $("#wid").window('close');
-            $("#tab").datagrid('reload');
-            $.messager.show({
-                title:'提示消息',
-                msg:"删除数据成功",
-                timeout:5000,
-                showType:'slide'
-            });
-        }
-    });
-};
-
-function delcglb(value) {
-    console.log(value)
-    $.ajax({
-        url:path+'/xmcggl/deleteByKey',
-        method:'get',
-        data:{
-            bh:value
-        },
-        success:function (data) {
-            console.log(data);
-            $("#tab1").datagrid('reload');
-            $.messager.show({
-                title:'提示消息',
-                msg:"删除数据成功",
-                timeout:5000,
-                showType:'slide'
-            });
-        }
-    });
-};
+    console.log(row1)
+    if (row1 != null) {
+        $.ajax({
+            url:path+'/kyjf/deleteByKey',
+            method:'get',
+            data:{
+                jflsh:row1.jflsh
+            },
+            success:function (data) {
+                console.log(data);
+                $("#wid").window('close');
+                $("#tab").datagrid('reload');
+                $.messager.show({
+                    title:'提示消息',
+                    msg:data.message,
+                    timeout:5000,
+                    showType:'slide'
+                });
+            }
+        });
+    }
+    else{
+        $.messager.show({
+            title:'提示消息',
+            msg:'请选择一条需要编辑的数据',
+            timeout:5000,
+            showType:'slide'
+        });
+    }
+}
 
     /**
  * 编辑
@@ -300,17 +198,17 @@ function doedit () {
  */
 doadd = function () {
 	$("#wid1").window('open');
-    $("#kyxm_add_form").form('reset');
-    $("#add_xmxz").combobox({
-        data:[{label:'1',type:"国家级"},{label:'2',type:"省级"},{label:'3',type:"省级以下"},{label:'4',type:"其他"}],
-        valueField:"label",
-        textField:"type",
+    $("#kyjf_add_form").form('reset');
+    $("#add_xmmc").combobox({
+        url:path+"/xmsb/getXmshList",
+        valueField:"xmmc",
+        textField:"xmmc",
         editable:false,
         panelHeight:"auto",
         onLoadSuccess:function(data) {
             console.log("111")
             var array=$(this).combobox("getData");
-            $(this).combobox('select',array[0].label);
+            $(this).combobox('select',array[0].xmmc);
         }
 
     });
@@ -348,8 +246,6 @@ doback = function () {
     $("#wid").window("close");
     $("#wid1").window("close");
     $("#bz_dialog").window("close");
-    $("#widcg").window("close");
-
 };
 
 /**
@@ -358,7 +254,7 @@ doback = function () {
 addSave = function () {
     console.log(getParmsadd());
 	$.ajax({
-		url:path+'/xmsb/add',
+		url:path+'/kyjf/add',
 		method:'post',
 		data:getParmsadd(),
 		success:function (data) {
@@ -453,14 +349,23 @@ function formatXmxz(value,row,index){
     }
 }
 
-function formatXmzt(value,row,index){
+function formatjfzt(value,row,index){
     if (value == undefined) {
         return "";
     }
-    if (value == 1){
-        return "已立项";
+    if (value == 0){
+        return "待审批";
+    }
+    if(value == 1){
+        return "已同意";
     }
     if(value == 2){
-        return "已终止";
+        return "拒绝";
     }
 }
+
+$("#add_jfhj").keydown(function(){
+    if(!(event.keyCode==46)&&!(event.keyCode==8)&&!(event.keyCode==37)&&!		(event.keyCode==39))
+        if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+            event.returnValue=false;
+});

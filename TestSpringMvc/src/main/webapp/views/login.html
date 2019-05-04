@@ -13,13 +13,26 @@
 	<script type="text/javascript" src="/TestSpringMvc/scripts/common/common.js"></script>
 	<script type="text/javascript" src="/TestSpringMvc/scripts/login.js"></script>
 </head>
-<body>
-	<div align="center" style="height: 400px;width: 600px;border: 1px solid gray;position: relative;left: 35%">
-		<p><h1>登录</h1>
-			<p>账号:<input type="text" class="easyui-textbox" id = "name"/>
-			<p>密码:<input type="password" class="easyui-textbox" id = "password">
-			<p><input type="button" id="login" class="easyui-linkbutton" value="登录" onclick="login()"  >     
-		   <input type="reset" class="easyui-linkbutton" value="重置" onclick="reset()">		
+<body  style="text-align: center">
+	<div >
+		<div>
+			<h1 >高  校  科  研  管  理  系  统</h1>
+		</div>
+		<div style="margin-top: 10%;border: #00bbee;solid-color: #00bbee;gap: 1px">
+			<p><h1>登录</h1>
+			<div style="margin-top: 10px">
+				<p>账号:  <input type="text" class="easyui-textbox" id = "name"/>
+			</div>
+			<div style="margin-top: 10px">
+				<p>密码:  <input type="password" class="easyui-textbox" id = "password">
+			</div>
+			<div style="margin-top: 20px">
+				<p><input type="button" id="login" class="easyui-linkbutton" style="width: 60px" value="登录" onclick="login()"  >
+					<input type="reset" class="easyui-linkbutton" value="重置" style="width: 60px" onclick="reset()">
+
+			</div>
+		</div>
+
 	</div>
 </body>
 </html>

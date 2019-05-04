@@ -1,7 +1,6 @@
-var nowxmlsh = "";
 $(function(){
 	$('#tab').datagrid({
-  		url:path+'/xmsb/getKymxPageInfo',
+  		url:path+'/xmsb/getXmshPageInfo',
   		rownumbers:true,//是否显示行号
    	 	striped:true,//是否显示斑马线效果
    	 	singleSelect:true,//只允许选择一行
@@ -17,7 +16,8 @@ $(function(){
 		toolbar : '#tb',
 	    columns:[[
 			{field:'ck',checkbox:true},//复选框
-            {field:'xmmc',title:"项目名称",width:300,align:'center'},
+			{field:'xmlsh',title:"项目流水号",width:250,align:'center'},
+            {field:'xmmc',title:"项目名称",width:500,align:'center'},
             {field:'xmxz',title:"项目性质",width:80,align:'center',formatter:formatXmxz},
             {field:'fzr',title:"负责人",width:50,align:'center'},
 			{field:'xkfl',title:"学科分类",width:100,align:'center'},
@@ -27,96 +27,15 @@ $(function(){
             {field:'cjsj',title:"创建时间",width:200,align:'center',formatter:formatDateTime},
             {field:'xmzt',title:"项目状态",width:60,align:'center',formatter:formatXmzt},
             {field:'zzsj',title:"终止时间",width:200,align:'center',formatter:formatDateTime},
-            {field:'bz',title:"备注",width:200,align:'center'},
-            {field:'xmlsh',title:'操作',width:200,align:'center',
-                formatter:function(value,rec,index){
-                    console.log(index+","+rec+","+value);
-                    nowxmlsh = value;
-                    var d = '<a href="#" mce_href="#" onclick="addkycg(\''+ value +'\')">科研成果</a> ';
-                    return d;
-                }
-            }
+            {field:'spr',title:"审核人",width:200,align:'center'},
+            {field:'shsj',title:"审核时间",width:200,align:'center',formatter:formatDateTime},
+            {field:'bz',title:"备注",width:200,align:'center'}
 	    ]],
 	    onLoadSuccess:function(data){
 	    	console.log(data);
 	    }
 	});
 });
-
-
-addkycg = function (value) {
-    $("#widcg").window('open');
-    $("#xmcggl_add_form").form('reset');
-    $("#xmcggl").combobox({
-        url:path+"/kycg/getCgListByCjr",
-        queryParams: { xmlsh:value },
-        valueField:"cglsh",
-        textField:"cgmc",
-        editable:false,
-        panelHeight:"auto",
-        onLoadSuccess:function(data) {
-            var array=$(this).combobox("getData");
-            $(this).combobox('select',array[0].cglsh);
-        }
-
-    });
-    $('#tab1').datagrid({
-        url:path+'/xmcggl/getKyjfPageInfo',
-        rownumbers:true,//是否显示行号
-        striped:true,//是否显示斑马线效果
-        singleSelect:true,//只允许选择一行
-        pagination:true,//是否显示分页工具栏
-        border:true,//是否显示边框
-        fit:true,//是否自适应父容器
-        fitColumns:true,//自动使列适应表格宽度以防止出现水平滚动
-        scrollbarSize:0,//滚动条的宽度
-        pageList:[10, 50, 100],//初始化页面大小选择列表
-        pageSize:10,
-        showFooter:true,//是否显示行脚
-        loadMsg :"加载数据中...",//加载数据时显示的提示消息
-        queryParams: { xmlsh:value }, //往后台传参数用的。
-        //toolbar : '#tb',
-        columns:[[
-            {field:'cgmc',title:"成果名称",width:100,align:'center'},
-            {field:'cgjb',title:"成果级别",width:50,align:'center'},
-            {field:'cgfl',title:"成果分类",width:50,align:'center'},
-            {field:'bh',title:'操作',width:100,align:'center',
-                formatter:function(value,rec,index){
-                    console.log(index+","+rec+","+value);
-                    var d = '<a href="#" mce_href="#" onclick="delcglb(\''+ value +'\')">删除</a> ';
-                    return d;
-                }
-            }
-        ]],
-        onLoadSuccess:function(data){
-            console.log(data);
-        }
-    });
-};
-
-function addcg() {
-    var xmcggl = $("#xmcggl").textbox("getValue").trim();
-    console.log(xmcggl);
-    console.log(nowxmlsh);
-    $.ajax({
-        url:path+'/xmcggl/add',
-        method:'get',
-        data:{
-            xmlsh:nowxmlsh,
-            cglsh:xmcggl
-        },
-        success:function (data) {
-            console.log(data);
-            $("#tab1").datagrid('reload');
-            $.messager.show({
-                title:'提示消息',
-                msg:"删除数据成功",
-                timeout:5000,
-                showType:'slide'
-            });
-        }
-    });
-}
 
 /**
  * 获得参数
@@ -160,7 +79,6 @@ function getParmsEdit() {
     var xmmc = $("#edit_xmmc").textbox('getValue');
     var xmxz = $("#edit_xmxz").textbox('getValue');
     var xmcyry = $("#edit_xmcyry").textbox('getValue');
-    var fzr = $("#edit_fzr").textbox('getValue');
     var kssj = $("#edit_kssj").textbox('getValue');
     var xkfl = $("#edit_xkfl").textbox('getValue');
     var jhwcsj = $("#edit_jhwcsj").textbox('getValue');
@@ -169,7 +87,6 @@ function getParmsEdit() {
         xmmc:xmmc,
         xmxz:xmxz,
         xmcyry:xmcyry,
-        fzr:fzr,
         kssj:kssj,
         xkfl:xkfl,
         jhwcsj:jhwcsj
@@ -203,9 +120,9 @@ doDelete = function () {
     console.log(row1.id)
     $.ajax({
         url:path+'/xmsb/deleteByKey',
-        method:'get',
+        method:'post',
         data:{
-            xmlsh:row1.xmlsh
+            id:row1.xmlsh
         },
         success:function (data) {
             console.log(data);
@@ -213,34 +130,13 @@ doDelete = function () {
             $("#tab").datagrid('reload');
             $.messager.show({
                 title:'提示消息',
-                msg:"删除数据成功",
+                msg:data.message,
                 timeout:5000,
                 showType:'slide'
             });
         }
     });
-};
-
-function delcglb(value) {
-    console.log(value)
-    $.ajax({
-        url:path+'/xmcggl/deleteByKey',
-        method:'get',
-        data:{
-            bh:value
-        },
-        success:function (data) {
-            console.log(data);
-            $("#tab1").datagrid('reload');
-            $.messager.show({
-                title:'提示消息',
-                msg:"删除数据成功",
-                timeout:5000,
-                showType:'slide'
-            });
-        }
-    });
-};
+}
 
     /**
  * 编辑
@@ -348,8 +244,6 @@ doback = function () {
     $("#wid").window("close");
     $("#wid1").window("close");
     $("#bz_dialog").window("close");
-    $("#widcg").window("close");
-
 };
 
 /**
@@ -396,14 +290,15 @@ editsave = function () {
     });
 };
 
-bzSave = function () {
+shSave = function () {
     var bz = $("#bz").textbox('getValue');
     console.log(bz+rows.id);
     $.ajax({
-        url:path+'/xmsb/update',
+        url:path+'/xmsb/updatesh',
         method:'post',
         data:{
             xmlsh:rows.xmlsh,
+            xmzt:'3',
             bz:bz
         },
         success:function (data) {
@@ -419,6 +314,32 @@ bzSave = function () {
         }
     });
 };
+
+shNoSave = function () {
+    var bz = $("#bz").textbox('getValue');
+    console.log(bz+rows.id);
+    $.ajax({
+        url:path+'/xmsb/updatesh',
+        method:'post',
+        data:{
+            xmlsh:rows.xmlsh,
+            xmzt:'4',
+            bz:bz
+        },
+        success:function (data) {
+            console.log(data);
+            $("#bz_dialog").window('close');
+            $("#tab").datagrid('reload');
+            $.messager.show({
+                title:'提示消息',
+                msg:data.message,
+                timeout:5000,
+                showType:'slide'
+            });
+        }
+    });
+};
+
 
 /*--------------正则表达式-----------------*/
 $.extend($.fn.validatebox.defaults.rules, {
@@ -462,5 +383,11 @@ function formatXmzt(value,row,index){
     }
     if(value == 2){
         return "已终止";
+    }
+    if (value == 3){
+        return "审核通过";
+    }
+    if(value == 4){
+        return "审核不通过";
     }
 }

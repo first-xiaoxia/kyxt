@@ -14,8 +14,14 @@ public class XmsbPo implements Serializable {
     private String jhwcsj;
     private String xmcyry;
     private String cjsj;
-    private String xmzt;
+    private String xmzt;//项目状态1立项,2终结,3审核通过，4审核不通过
+    private String zzsj;
     private String bz;
+    private String shsj;
+    private String spr;
+
+    private String khr;
+    private String khsj;
 
     public String getXmlsh() {
         return xmlsh;
@@ -103,5 +109,45 @@ public class XmsbPo implements Serializable {
 
     public void setBz(String bz) {
         this.bz = bz;
+    }
+
+    public String getZzsj() {
+        return zzsj;
+    }
+
+    public void setZzsj(String zzsj) {
+        this.zzsj = zzsj;
+    }
+
+    public String getShsj() {
+        return shsj;
+    }
+
+    public void setShsj(String shsj) {
+        this.shsj = shsj;
+    }
+
+    public String getSpr() {
+        return spr;
+    }
+
+    public void setSpr(String spr) {
+        this.spr = spr;
+    }
+
+    public String getKhr() {
+        return khr;
+    }
+
+    public void setKhr(String khr) {
+        this.khr = khr;
+    }
+
+    public String getKhsj() {
+        return khsj;
+    }
+
+    public void setKhsj(String khsj) {
+        this.khsj = khsj;
     }
 }

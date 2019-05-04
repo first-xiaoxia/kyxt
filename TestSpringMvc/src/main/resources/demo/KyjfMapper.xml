@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.KyjfDao" >
+
+  <sql id="Base_Column_List" >
+    jflsh, xmmc,jfdj,sl,jfhj,fyzl, fyyt, cjr,cjsj,spr,shsj,shzt,shly
+  </sql>
+
+  <select id="selectXmsbByPrimaryKey" resultType="com.java.entity.KyjfPo" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_xmjf
+    where jflsh = #{jflsh}
+  </select>
+
+  <select id="getKyjfList" resultType="com.java.entity.KyjfPo">
+    select <include refid="Base_Column_List"/>
+    from t_xmjf
+    where 1=1
+    <if test="xmmc != null and xmmc != ''">
+      AND xmmc LIKE concat('%',#{xmmc},'%')
+    </if>
+    <if test="shzt != null and shzt != ''" >
+      and shzt = #{shzt}
+    </if>
+    <if test="cjr != null and cjr != ''" >
+      AND cjr LIKE concat('%',#{cjr},'%')
+    </if>
+    <if test="starDate != null and starDate != ''" >
+      AND cjsj &gt;= #{starDate}
+    </if>
+    <if test="endDate != null and endDate != ''" >
+      AND cjsj &lt;= #{endDate}
+    </if>
+    LIMIT #{page},#{rows}
+  </select>
+
+  <select id="getCount" resultType="java.lang.Integer">
+    select count(1)
+    from t_xmjf
+    where 1=1
+    <if test="xmmc != null and xmmc != ''">
+      AND xmmc LIKE concat('%',#{xmmc},'%')
+    </if>
+    <if test="shzt != null and shzt != ''" >
+      and shzt = #{shzt}
+    </if>
+    <if test="cjr != null and cjr != ''" >
+      AND cjr LIKE concat('%',#{cjr},'%')
+    </if>
+    <if test="starDate != null and starDate != ''" >
+      AND cjsj &gt;= #{starDate}
+    </if>
+    <if test="endDate != null and endDate != ''" >
+      AND cjsj &lt;= #{endDate}
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_xmjf
+    where jflsh = #{jflsh}
+  </delete>
+  <insert id="insertKyjf" parameterType="com.java.entity.KyjfPo" >
+    insert into t_xmjf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jflsh != null and jflsh != ''" >
+        jflsh,
+      </if>
+      <if test="xmmc != null and xmmc != ''" >
+        xmmc,
+      </if>
+      <if test="fyzl != null and fyzl != ''" >
+        fyzl,
+      </if>
+      <if test="jfhj != null and jfhj != ''" >
+        jfhj,
+      </if>
+      <if test="fyyt != null and fyyt != ''" >
+        fyyt,
+      </if>
+      <if test="cjr != null and cjr != ''" >
+        cjr,
+      </if>
+      <if test="cjsj != null and cjsj != ''" >
+        cjsj,
+      </if>
+      <if test="shzt != null and shzt != ''" >
+        shzt,
+      </if>
+      <if test="spr != null and spr != ''" >
+        spr,
+      </if>
+      <if test="shsj != null and shsj != ''">
+        shsj,
+      </if>
+      <if test="shly != null and shly != ''" >
+        shly,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jflsh != null and jflsh != ''" >
+        #{jflsh},
+      </if>
+      <if test="xmmc != null and xmmc != ''" >
+        #{xmmc},
+      </if>
+      <if test="fyzl != null and fyzl != ''" >
+        #{fyzl},
+      </if>
+      <if test="jfhj != null and jfhj != ''" >
+        #{jfhj},
+      </if>
+      <if test="fyyt != null and fyyt != ''" >
+        #{fyyt},
+      </if>
+      <if test="cjr != null and cjr != ''" >
+        #{cjr},
+      </if>
+      <if test="cjsj != null and cjsj != ''" >
+        #{cjsj},
+      </if>
+      <if test="shzt != null and shzt != ''" >
+        #{shzt},
+      </if>
+      <if test="spr != null and spr != ''" >
+        #{spr},
+      </if>
+      <if test="shsj != null and shsj != ''">
+        #{shsj},
+      </if>
+      <if test="shly != null and shly != ''" >
+        #{shly},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.KyjfPo" >
+    update t_xmjf
+    <set >
+      <if test="jflsh != null and jflsh != ''" >
+        jflsh = #{jflsh},
+      </if>
+      <if test="xmmc != null and xmmc != ''" >
+        xmmc =#{xmmc},
+      </if>
+      <if test="jfdj != null and jfdj != ''" >
+        jfdj =#{jfdj},
+      </if>
+      <if test="sl != null and sl != ''" >
+        sl =#{sl},
+      </if>
+      <if test="jfhj != null and jfhj != ''" >
+        jfhj=#{jfhj},
+      </if>
+      <if test="fyyt != null and fyyt != ''" >
+        fyyt=#{fyyt},
+      </if>
+      <if test="cjr != null and cjr != ''" >
+        cjr=#{cjr},
+      </if>
+      <if test="cjsj != null and cjsj != ''" >
+        cjsj=#{cjsj},
+      </if>
+      <if test="shzt != null and shzt != ''" >
+        shzt=#{shzt},
+      </if>
+      <if test="spr != null and spr != ''" >
+        spr=#{spr},
+      </if>
+      <if test="shsj != null and shsj != ''">
+        shsj=#{shsj},
+      </if>
+      <if test="shly != null and shly != ''" >
+        shly=#{shly},
+      </if>
+    </set>
+    where jflsh = #{jflsh}
+  </update>
+
+</mapper>

@@ -16,5 +16,7 @@ public interface XmsbDao {
 
     List<XmsbPo> getKyxmList(BaseQuery query);
 
+    List<XmsbPo> getList(BaseQuery query);
+
     Integer getCount(BaseQuery query);
 }

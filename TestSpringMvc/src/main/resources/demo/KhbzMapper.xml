@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.KhbzDao" >
+
+  <sql id="Base_Column_List" >
+    bzlsh,bzmc,fz,dw,cjr,cjsj
+  </sql>
+
+  <select id="selectXmsbByPrimaryKey" resultType="com.java.entity.KhbzPo" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_khbz
+    where bzlsh = #{bzlsh}
+  </select>
+
+  <select id="getKyjfList" resultType="com.java.entity.KhbzPo">
+    select <include refid="Base_Column_List"/>
+    from t_khbz
+    where 1=1
+    <if test="bzmc != null and bzmc != ''">
+      AND bzmc LIKE concat('%',#{bzmc},'%')
+    </if>
+    <if test="cjr != null and cjr != ''">
+      AND cjr LIKE concat('%',#{cjr},'%')
+    </if>
+    <if test="starDate != null and starDate != ''" >
+      AND cjsj &gt;= #{starDate}
+    </if>
+    <if test="endDate != null and endDate != ''" >
+      AND cjsj &lt;= #{endDate}
+    </if>
+    LIMIT #{page},#{rows}
+  </select>
+
+  <select id="getCount" resultType="java.lang.Integer">
+    select count(1)
+    from t_khbz
+    where 1=1
+    <if test="bzmc != null and bzmc != ''">
+      AND bzmc LIKE concat('%',#{bzmc},'%')
+    </if>
+    <if test="cjr != null and cjr != ''">
+      AND cjr LIKE concat('%',#{cjr},'%')
+    </if>
+    <if test="starDate != null and starDate != ''" >
+      AND cjsj &gt;= #{starDate}
+    </if>
+    <if test="endDate != null and endDate != ''" >
+      AND cjsj &lt;= #{endDate}
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_khbz
+    where bzlsh = #{bzlsh}
+  </delete>
+  <insert id="insertKyjf" parameterType="com.java.entity.KycgPo" >
+    insert into t_khbz
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bzlsh != null and bzlsh != ''" >
+        bzlsh,
+      </if>
+      <if test="bzmc != null and bzmc != ''" >
+        bzmc,
+      </if>
+      <if test="fz != null and fz != ''" >
+        fz,
+      </if>
+      <if test="dw != null and dw != ''" >
+        dw,
+      </if>
+      <if test="cjr != null and cjr != ''" >
+        cjr,
+      </if>
+      <if test="cjsj != null and cjsj != ''" >
+        cjsj,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bzlsh != null and bzlsh != ''" >
+        #{bzlsh},
+      </if>
+      <if test="bzmc != null and bzmc != ''" >
+        #{bzmc},
+      </if>
+      <if test="fz != null and fz != ''" >
+        #{fz},
+      </if>
+      <if test="dw != null and dw != ''" >
+        #{dw},
+      </if>
+      <if test="cjr != null and cjr != ''" >
+        #{cjr},
+      </if>
+      <if test="cjsj != null and cjsj != ''" >
+        #{cjsj},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.KhbzPo" >
+    update t_khbz
+    <set >
+      <if test="bzmc != null and bzmc != ''" >
+        bzmc =#{bzmc},
+      </if>
+      <if test="fz != null and fz != ''" >
+        fz =#{fz},
+      </if>
+      <if test="dw != null and dw != ''" >
+        dw =#{dw},
+      </if>
+    </set>
+    where bzlsh = #{bzlsh}
+  </update>
+
+
+</mapper>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.XmcgglDao" >
+
+  <sql id="Base_Column_List" >
+    bh,xmlsh,xmmc,cglsh,cgmc
+  </sql>
+
+  <select id="selectXmsbByPrimaryKey" resultType="com.java.entity.XmcgglPo" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_xmcg
+    where bh = #{bh}
+  </select>
+
+  <select id="getKyjfList" resultType="com.java.entity.vo.XmcgglVo">
+    select t.bh,t.xmlsh,t1.cglsh,t1.cgmc,t1.cgjb,t1.cgfl from t_xmcg t INNER JOIN t_kycg t1 on t.cglsh = t1.cglsh
+    where 1=1
+    <if test="xmlsh != null and xmlsh != ''">
+      AND xmlsh = #{xmlsh}
+    </if>
+
+    LIMIT #{page},#{rows}
+  </select>
+
+  <select id="getCount" resultType="java.lang.Integer">
+    select count(1)
+    from t_xmcg t INNER JOIN t_kycg t1 on t.cglsh = t1.cglsh
+    where 1=1
+    <if test="xmlsh != null and xmlsh != ''">
+      AND xmlsh = #{xmlsh}
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_xmcg
+    where bh = #{bh}
+  </delete>
+  <insert id="insertKyjf" parameterType="com.java.entity.XmcgglPo" >
+    insert into t_xmcg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bh != null and bh != ''" >
+        bh,
+      </if>
+      <if test="xmlsh != null and xmlsh != ''" >
+        xmlsh,
+      </if>
+      <if test="xmmc != null and xmmc != ''" >
+        xmmc,
+      </if>
+      <if test="cglsh != null and cglsh != ''" >
+        cglsh,
+      </if>
+      <if test="cgmc != null and cgmc != ''" >
+        cgmc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bh != null and bh != ''" >
+        #{bh},
+      </if>
+      <if test="xmlsh != null and xmlsh != ''" >
+        #{xmlsh},
+      </if>
+      <if test="xmmc != null and xmmc != ''" >
+        #{xmmc},
+      </if>
+      <if test="cglsh != null and cglsh != ''" >
+        #{cglsh},
+      </if>
+      <if test="cgmc != null and cgmc != ''" >
+        #{cgmc},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.XmcgglPo" >
+    update t_xmcg
+    <set >
+      <if test="xmlsh != null and xmlsh != ''" >
+        xmlsh =#{xmlsh},
+      </if>
+      <if test="xmmc != null and xmmc != ''" >
+        xmmc =#{xmmc},
+      </if>
+      <if test="cglsh != null and cglsh != ''" >
+        cglsh =#{cglsh},
+      </if>
+      <if test="cgmc != null and cgmc != ''" >
+        cgmc =#{cgmc},
+      </if>
+    </set>
+    where bh = #{bh}
+  </update>
+
+
+</mapper>

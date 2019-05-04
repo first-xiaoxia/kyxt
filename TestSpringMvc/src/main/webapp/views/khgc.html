@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/common.css"/>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/demo.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/user.css">
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/common/common.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/khgc.js"></script>
+</head>
+<body>
+<table id="tab" style="height: auto"></table>
+<div id="tb">
+	<div class="btns" id="btn1">
+		<a href="#" id="sear" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
+	</div>
+	<div id="term" class="terms" >
+		<div>项目名称<input class="easyui-textbox" id="xmmc" style="width: 350px;height: 25px;"></div>
+		<div>项目性质<select id="xmxz" name = "xmxz"  class="easyui-combobox"  style="width: 155px">
+			<option value="0" >--请选择--</option>
+			<option  value="1">国家级</option>
+			<option value="2">省级</option>
+			<option  value="3">省级以下</option>
+			<option value="4">其他</option>
+		</select>
+		</div>
+		<div>项目状态<select id="xmzt" name = "xmzt"  class="easyui-combobox"  style="width: 155px">
+			<option value="0" >--请选择--</option>
+			<option  value="1">立项</option>
+			<option value="2">终止</option>
+			<option  value="3">审核通过</option>
+			<option value="4">审核不通过</option>
+		</select>
+		</div>
+
+	</div>
+</div>
+
+<div id="widkhgc" class="easyui-dialog" closed="true" data-options="buttons:'#btn_cg'" modal="true" title="项目编辑" style="height:100%;width:100%;">
+	<form class="form" id="khgc_form" style="text-align: center">
+		<div style="width: 98%">
+			<span>成果名称  ：</span><input id="khbz" name="khbz" class="easyui-combobox"  style="width: 240px" >
+			<a href="#" class="easyui-linkbutton" style="width: 80px"  onclick="addcg()">添加</a>
+
+		</div>
+		<div style="width: 98%">
+			<h1>科研成果列表</h1>
+		</div>
+	</form>
+	<table style="width: 98%" id="tab1" style="height: auto"></table>
+</div>
+<div id="btn_cg" style="text-align: center">
+	<a href="#" class="easyui-linkbutton" style="width: 80px"   onclick="doback()">返回</a>
+</div>
+</body>
+
+</html>

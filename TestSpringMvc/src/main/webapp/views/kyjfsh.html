@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/scripts/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/common.css"/>
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/demo.css">
+	<link rel="stylesheet" type="text/css" href="/TestSpringMvc/styles/user.css">
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui/jquery.easyui.mobile.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/common/common.js"></script>
+	<script type="text/javascript" src="/TestSpringMvc/scripts/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/TestSpringMvc/scripts/jfsh.js"></script>
+</head>
+<body>
+	<table id="tab" style="height: auto"></table>
+	<div id="tb">
+		<div class="btns" id="btn1">
+		<a href="#" id="sear" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="doClear()">重置</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="doAddBZ()">审核</a>
+		</div>
+		<div id="term" class="terms" >
+			<div>申请人<input class="easyui-textbox" id="cjr" style="width: 155px;height: 25px;"></div>
+			<div>审核状态<select class="easyui-combobox" id="shzt" style="width: 155px;height: 25px;">
+					<option value="-1" >--请选择--</option>
+					<option  value="0" selected>待审核</option>
+					<option value="1">审核通过</option>
+					<option  value="2">审核不通过</option>
+				</select>
+			</div>
+			<div>开始时间<input id="starDate" name = "starDate"  class="easyui-datetimebox" data-options="editable:false" style="width: 155px" /></div>
+			<div>结束时间<input id="endDate" name = "endDate"  class="easyui-datetimebox" data-options="editable:false" style="width: 155px" /></div>
+			<div>项目名称<input class="easyui-textbox" id="xmmc" style="width: 255px;height: 25px;"></div>
+		</div>
+	</div>
+
+ 	<div id = "jfsh_dialog" class="easyui-dialog" closed="true" data-options="buttons:'#bb'"  title="项目审核" modal="true" style="height: 300px;width: 500px">
+		<input class="easyui-textbox" id="bz"  data-options="multiline:true,prompt:'请输入你的审核理由'"  style="width:100%;height:100%">
+	</div>
+	<div id="bb" style="text-align: center">
+		<a href="#" class="easyui-linkbutton" style="width: 80px"  onclick="shSave()">通过</a>
+		<a href="#" class="easyui-linkbutton" style="width: 80px"  onclick="shNoSave()">不通过</a>
+		<a href="#" class="easyui-linkbutton" style="width: 80px"   onclick="doback()">返回</a>
+	</div>
+</body>
+
+</html>

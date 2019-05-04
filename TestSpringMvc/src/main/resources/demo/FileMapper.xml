@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.FileDao" >
+
+  <sql id="Base_Column_List" >
+    wjlsh,wjmc,wjlj,cglsh,cgmc,hzm,wjlx
+  </sql>
+
+  <select id="selectXmsbByPrimaryKey" resultType="com.java.entity.MyFileUpload" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_file
+    where wjlsh = #{wjlsh}
+  </select>
+
+  <select id="getKyjfList" resultType="com.java.entity.MyFileUpload">
+    select <include refid="Base_Column_List"/>
+    from t_file
+    where 1=1
+    <if test="wjmc != null and wjmc != ''">
+      AND wjmc LIKE concat('%',#{wjmc},'%')
+    </if>
+    <if test="cglsh != null and cglsh != ''">
+      AND cglsh = #{cglsh}
+    </if>
+    <if test="cgmc != null and cgmc != ''">
+      AND cgmc LIKE concat('%',#{cgmc},'%')
+    </if>
+    LIMIT #{page},#{rows}
+  </select>
+
+  <select id="getCount" resultType="java.lang.Integer">
+    select count(1)
+    from t_file
+    where 1=1
+    <if test="wjmc != null and wjmc != ''">
+      AND wjmc LIKE concat('%',#{wjmc},'%')
+    </if>
+    <if test="cglsh != null and cglsh != ''">
+      AND cglsh = #{cglsh}
+    </if>
+    <if test="cgmc != null and cgmc != ''">
+      AND cgmc LIKE concat('%',#{cgmc},'%')
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_file
+    where wjlsh = #{wjlsh}
+  </delete>
+  <insert id="insertKyjf" parameterType="com.java.entity.KycgPo" >
+    insert into t_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wjlsh != null and wjlsh != ''" >
+        wjlsh,
+      </if>
+      <if test="wjmc != null and wjmc != ''" >
+        wjmc,
+      </if>
+      <if test="wjlj != null and wjlj != ''" >
+        wjlj,
+      </if>
+      <if test="cglsh != null and cglsh != ''" >
+        cglsh,
+      </if>
+      <if test="cgmc != null and cgmc != ''" >
+        cgmc,
+      </if>
+      <if test="hzm != null and hzm != ''" >
+        hzm,
+      </if>
+      <if test="wjlx != null and wjlx != ''" >
+        wjlx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wjlsh != null and wjlsh != ''" >
+        #{wjlsh},
+      </if>
+      <if test="wjmc != null and wjmc != ''" >
+        #{wjmc},
+      </if>
+      <if test="wjlj != null and wjlj != ''" >
+        #{wjlj},
+      </if>
+      <if test="cglsh != null and cglsh != ''" >
+        #{cglsh},
+      </if>
+      <if test="cgmc != null and cgmc != ''" >
+        #{cgmc},
+      </if>
+      <if test="hzm != null and hzm != ''" >
+        #{hzm},
+      </if>
+      <if test="wjlx != null and wjlx != ''" >
+        #{wjlx},
+      </if>
+    </trim>
+  </insert>
+
+  <insert id="insertByBatch" parameterType="java.util.List">
+    insert into t_file (wjlsh,wjmc,wjlj,cglsh,cgmc,hzm,wjlx)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.wjlsh},
+      #{item.wjmc},
+      #{item.wjlj},
+      #{item.cglsh},
+      #{item.cgmc},
+      #{item.hzm},
+      #{item.wjlx}
+      )
+    </foreach>
+  </insert>
+
+</mapper>

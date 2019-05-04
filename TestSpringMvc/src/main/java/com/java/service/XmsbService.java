@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.swing.text.DateFormatter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -51,5 +52,10 @@ public class XmsbService {
         result.setRows(rows);
         result.setTotal(total);
         return result;
+    }
+
+    public List<XmsbPo> getXmshList(BaseQuery query){
+        List<XmsbPo> list = xmsbDao.getList(query);
+        return list;
     }
 }
